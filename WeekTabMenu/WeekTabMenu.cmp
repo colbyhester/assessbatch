@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <aura:attribute name="moretabs" type="Aura.Component[]"/>
+    <aura:attribute name="numOfTabs" type="Integer"/> 
+    <lightning:tabset>
+        <lightning:tab class="slds-m-left_large" onactive="{! c.handleActive }" label="Week 1" id="badge" />
+        {!v.moretabs} <!-- new tabs will be inserted here -->
+        
+        <lightning:tab class="slds-m-left_large,slds-p-left_x-large,slds-p-right_x-large" onactive="{! c.addTab }" label="+" id="inputs" />
+    </lightning:tabset>
+</aura:component>
