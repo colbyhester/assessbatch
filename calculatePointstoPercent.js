@@ -14,7 +14,7 @@
     }//end of points to percent*/
     sectionAverage : function(Score__c){
         /*iterate through the grades*/
-        ScoresSum=0;
+      var ScoresSum=0;
         for(i=0; i<Score__c.length; i++){
        /*just an array of integers; sums it up*/
             ScoresSum += Score__c[i];
@@ -23,7 +23,7 @@
     }//end of sectionAverage
 
     weeklyBatchAverage: function(Score__c){
-
+       return (this.sectionAverage/this.sectionAverage.length);
       
     }//end of weeklyAverage
 })
