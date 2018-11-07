@@ -2,7 +2,7 @@
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:attribute name='associate' type='Contact' />
     <aura:attribute name='note' type='Caliber_Note__c' />
-    <aura:attribute name='week' type='Integer' default='1' />
+    <aura:attribute name='week' type='Integer' />
     <aura:handler event='c:saveNotes' action='{!c.handleSave}'/>
     <tr class="slds-hint-parent">
         <th data-label="Trainee" scope="row">
@@ -10,7 +10,9 @@
         </th>
         <td data-label="Notes">
             <div class="slds-truncate" title="Notes">
-                <lightning:input type='text' value="{!v.note.Note_Content__c}" />
+                <!--<lightning:input type='text' value="{!v.note.Note_Content__c}" />-->
+                <ui:inputTextArea aura:id="textarea" value="{!v.note.Note_Content__c}" 
+                                       blur="{!c.handleSave}"/>
             </div>
         </td>
     </tr>

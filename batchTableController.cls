@@ -27,8 +27,18 @@ public class batchTableController {
                 return n;
             }
         }
-        //change this later
-        return [SELECT ID, Note_Content__c FROM Caliber_Note__c LIMIT 1];
+        Caliber_Note__c n = new Caliber_Note__c();
+        n.Contact__c=associate;
+        n.Week_Number__c=week;
+        n.Is_QC_Feedback__c=false;
+        n.Note_Content__c='';
+        n.Note_Type__c='Trainee';
+        List<Contact> c = [SELECT (SELECT ID FROM Training_Assignments__r LIMIT 1) FROM Contact WHERE ID=:associate LIMIT 1];
+        Training_Assignment__c trass = c[0].Training_Assignments__r[0];
+        List<Training_Assignment__c> trassList = [SELECT Training__c FROM Training_Assignment__c WHERE ID=:trass.ID LIMIT 1];
+        n.Training__c=trassList[0].Training__c;
+        insert n;
+        return n;
     }
     
     @AuraEnabled

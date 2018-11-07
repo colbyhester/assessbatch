@@ -2,7 +2,9 @@
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:attribute name="associates" type="Contact[]"/>
     <aura:attribute name="batchID" type="Id"/>
+    <aura:attribute name='week' type='Integer' default='1'/>
     <aura:registerEvent name='save' type='c:saveNotes' />
+    
  
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
     	<thead>
@@ -17,7 +19,7 @@
         </thead>
         <tbody>
         	<aura:iteration items="{!v.associates}" var="ass">
-                <c:batchTableRow associate='{!ass}' />
+                <c:batchTableRow associate='{!ass}' week='{!v.week}' />
             </aura:iteration>
         </tbody>
     </table>
