@@ -23,10 +23,19 @@ public class batchTableController {
         System.debug(associate);
         for(Caliber_Note__c n : [SELECT ID, Note_Content__c, Contact__c, Week_Number__c FROM Caliber_Note__c]){
             if(n.Week_Number__c==week&&n.Contact__c==associate){
+                System.debug('poop');
                 return n;
             }
         }
         //change this later
-        return [SELECT Note_Content__c FROM Caliber_Note__c LIMIT 1];
+        return [SELECT ID, Note_Content__c FROM Caliber_Note__c LIMIT 1];
     }
+    
+    @AuraEnabled
+    public static Caliber_Note__c saveNote(Caliber_Note__c note){
+        update note;
+        return note;
+    }
+    
+    
 }

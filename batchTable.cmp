@@ -2,7 +2,7 @@
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:attribute name="associates" type="Contact[]"/>
     <aura:attribute name="batchID" type="Id"/>
-    
+    <aura:registerEvent name='save' type='c:saveNotes' />
  
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
     	<thead>
@@ -21,6 +21,6 @@
             </aura:iteration>
         </tbody>
     </table>
-    <lightning:button label='Save' title='Save' onclick='{!c.saveNotes}' />
+    <lightning:button label='Save' title='save' onclick='{!c.saveNotes}' />
     
 </aura:component>

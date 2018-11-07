@@ -19,6 +19,8 @@
         $A.enqueueAction(action);
 	},
     saveNotes : function(component, event, helper){
-        
+        var saveEvent = $A.get('e.c:saveNotes');
+        saveEvent.fire();
+
     }
 })
