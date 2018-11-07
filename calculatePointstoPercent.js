@@ -22,9 +22,12 @@
     return(ScoresSum/Score__c.length);
     }//end of sectionAverage
 
-    weeklyBatchAverage: function(){
-        /*will fix tomorrow*/
- return (this.sectionAverage/this.sectionAverage.length);
-      
-    }//end of weeklyAverage
+    weeklyBatchAverage: function(Assessment){
+        var totalAverage=0;
+        for(i=0; i<Assessment.length; i++){
+     totalAverage +=this.sectionAverage(Assessment[i].Caliber_Grade__c);
+        }
+        return (totalAverage/Assessment.length);
+
+}//end of weeklyAverage
 })
