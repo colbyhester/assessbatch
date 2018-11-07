@@ -19,11 +19,12 @@
        /*just an array of integers; sums it up*/
             ScoresSum += Score__c[i];
     }/*we want to return the average*/
-    return(GradesSum/Score__c.length);
+    return(ScoresSum/Score__c.length);
     }//end of sectionAverage
 
-    weeklyBatchAverage: function(Score__c){
-       return (this.sectionAverage/this.sectionAverage.length);
+    weeklyBatchAverage: function(){
+        /*will fix tomorrow*/
+ return (this.sectionAverage/this.sectionAverage.length);
       
     }//end of weeklyAverage
 })
