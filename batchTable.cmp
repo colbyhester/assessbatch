@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="batchTableController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="associates" type="Contact[]"/>
+    <aura:attribute name="batchID" type="Id"/>
+    
+ 
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+    	<thead>
+			<tr class="slds-line-height_reset">
+            	<th class="slds-text-title_caps" scope="col">
+                	<div class="slds-truncate" title="Trainee">Trainee</div>
+                </th>
+                <th class="slds-text-title_caps" scope="col">
+                    <div class="slds-truncate" title="Notes">Notes</div>
+                </th>   	
+            </tr>        	
+        </thead>
+        <tbody>
+        	<aura:iteration items="{!v.associates}" var="ass">
+                <c:batchTableRow associate='{!ass}' />
+            </aura:iteration>
+        </tbody>
+    </table>
+    <lightning:button label='Save' title='Save' onclick='{!c.saveNotes}' />
+    
+</aura:component>

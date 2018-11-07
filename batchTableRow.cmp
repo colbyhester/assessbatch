@@ -1,0 +1,18 @@
+<aura:component controller="batchTableController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name='associate' type='Contact' />
+    <aura:attribute name='note' type='Caliber_Note__c' />
+    <aura:attribute name='week' type='Integer' default='1' />
+    <tr class="slds-hint-parent">
+        <th data-label="Trainee" scope="row">
+            <div class="slds-truncate" title="Name">{!v.associate.Name}</div>
+        </th>
+        <td data-label="Notes">
+            <div class="slds-truncate" title="Notes">
+                <lightning:input type="text" value=""/>
+                <!--<lightning:inputField fieldName="{!v.note.Note_Content__c}" />-->
+            </div>
+        </td>
+    </tr>
+    <!--<lightning:outputField fieldName='{!v.associate.Name}' />-->
+</aura:component>
