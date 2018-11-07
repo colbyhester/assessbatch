@@ -23,6 +23,6 @@
             </aura:iteration>
         </tbody>
     </table>
-    <lightning:button label='Save' title='save' onclick='{!c.saveNotes}' />
+    <lightning:button label='Save' title='save' onclick='' />
     
 </aura:component>
