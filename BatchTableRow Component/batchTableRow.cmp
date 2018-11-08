@@ -1,0 +1,28 @@
+<aura:component controller="TraineeRowController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name='associate' type='Contact' />
+    <aura:attribute name='note' type='Caliber_Note__c' />
+    <aura:attribute name='week' type='Integer' />
+    <aura:handler event='c:saveNotes' action='{!c.handleSave}'/>
+    <aura:handler event="c:DynComp" action="{!c.DynComp}"  />
+    <tr id='KleanNuts' class="slds-hint-parent">
+        <th data-label="Trainee" scope="row">
+            <div class="slds-truncate" title="Name">{!v.associate.Name}</div>
+        </th>
+        
+    
+                {!v.body}
+           
+        <td data-label="Notes">
+            <div class="slds-truncate" title="Notes">
+                <!--<lightning:input type='text' value="{!v.note.Note_Content__c}" />-->
+                <ui:inputTextArea aura:id="textarea" value="{!v.note.Note_Content__c}" 
+                                  blur="{!c.handleSave}"/>
+            </div>
+            
+        </td>
+  	
+        
+        
+    </tr>
+</aura:component>
