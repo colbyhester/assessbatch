@@ -1,31 +1,38 @@
-<aura:component controller="ReportsController">
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="ReportsController">
     <aura:handler name="init" action="{!c.doInitYears}" value="{!this}"/>
-    
+    <!-- values for chosen year and all years with batches -->
     <aura:attribute name="allYears" type="Integer[]"/>
     <aura:attribute name="yearLabel" type="Integer" default="2018"/>
-    <!-- todo: get all batches -->
+	<!-- values for chosen batch, all batches in a year, their string representations, and the list of options to choose them from -->
+    <aura:attribute name="options" type="List"/>
     <aura:attribute name="allBatches" type="Training__c[]"/>
     <aura:attribute name="currentBatch" type="Training__c"/>
+    <aura:attribute name="batchId" type="Id"/>
     <aura:attribute name="allBatchLabels" type="String[]"/>
     <aura:attribute name="batchLabel" type="String" default="None"/>
-    <!-- todo: get all weeks for current batch -->
+	<!-- values for chosen week and all weeks chosen batch has -->
     <aura:attribute name="allWeekLabels" type="String[]"/>
-    <aura:attribute name="weekLabel" type="String" default="Week 1"/>
-    <!-- todo: get all trainees for current batch -->
+    <aura:attribute name="weekLabel" type="String" default="Week (All)"/>
+	<!-- values for all trainees in chosen batch and chosen trainee -->
     <aura:attribute name="allTrainees" type="Contact[]"/>
     <aura:attribute name="currentTrainee" type="Contact"/>
-    <div>
-        <div>
-            <ui:menu>
+    <aura:attribute name="currentTraineeName" type="String" default="Trainee"/>
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-6">
+            <!-- year menu item -->
+            <lightning:combobox name="years" label="Year" value="{!v.yearLabel}" 
+                                options="{!v.options}" onchange="{!c.updateYearLabel}"/>
+            <!--<ui:menu>
                 <ui:menuTriggerLink aura:id="year" label="{!v.yearLabel}"/>
                 <ui:menuList class="actionMenu" aura:id="actionMenu">
                     <aura:iteration items="{!v.allYears}" var="year">
                         <ui:actionMenuItem aura:id="item" label="{!year}" click="{!c.updateYearLabel}"/>
                     </aura:iteration>
                 </ui:menuList>
-            </ui:menu>
+            </ui:menu>-->
         </div>
         <div>
+            <!-- batch menu item -->
             <ui:menu>
                 <ui:menuTriggerLink aura:id="batches" label="{!v.batchLabel}"/>
                 <ui:menuList class="actionMenu" aura:id="actionMenu">
@@ -36,21 +43,13 @@
             </ui:menu>
         </div>
         <div>
+            <!-- week menu item -->
             <ui:menu>
                 <ui:menuTriggerLink aura:id="week" label="{!v.weekLabel}"/>
                 <ui:menuList class="actionMenu" aura:id="actionMenu">
+                    <ui:actionMenuItem aura:id="allWeeks" label="Week (All)" click="{!c.updateAllWeeks}"/>
                     <aura:iteration items="{!v.allWeekLabels}" var="weekLabel">
                     	<ui:actionMenuItem aura:id="item2" label="{!weekLabel}" click="{!c.updateWeekLabel}"/>
-                    </aura:iteration>
-                </ui:menuList>
-            </ui:menu>
-        </div>
-        <div>
-            <ui:menu>
-                <ui:menuTriggerLink aura:id="trainee" label="{!v.currentTrainee.Name}"/>
-                <ui:menuList class="actionMenu" aura:id="actionMenu">
-                    <aura:iteration items="{!v.allTrainees}" var="trainee">
-                    	<ui:actionMenuItem aura:id="item2" label="{!trainee.Name}" click="{!c.updateTraineeLabel}"/>
                     </aura:iteration>
                 </ui:menuList>
             </ui:menu>
