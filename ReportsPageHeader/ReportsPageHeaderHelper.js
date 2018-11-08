@@ -28,6 +28,7 @@
             if (state === "SUCCESS"){
                 component.set("v.allBatchLabels", response.getReturnValue());
                 component.set("v.batchLabel", response.getReturnValue()[0]);
+                
             }
         });
         $A.enqueueAction(actionBuildBatchString);
