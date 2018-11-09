@@ -1,6 +1,19 @@
 public class batchTableController {
 
     @AuraEnabled
+    public static Training__c getBatch(){
+        return [SELECT Name, Caliber_Number_of_Weeks__c FROM Training__c LIMIT 1];
+    }
+    
+    @AuraEnabled
+    public static Training__c incrementWeek(Training__c batch){
+        batch.Caliber_Number_of_Weeks__c++;
+        update batch;
+        return batch;
+    }
+    
+    
+    @AuraEnabled
     public static List<Contact> getAssociates(ID batchID){
         List<Training_Assignment__c> trainAss = [SELECT ID, Contact__c FROM Training_Assignment__c WHERE Training__c=:batchID];
         List<Contact> allCons = [SELECT Name FROM Contact];

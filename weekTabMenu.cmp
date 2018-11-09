@@ -1,0 +1,21 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller='batchTableController'>
+   <!-- The moretabs attribute will contain all of the extra tabs created, for now.
+		There will always be at least 1 tab, so everything from the 2nd tab and on, up until
+		the add more button ( + ) are contained in there. 	
+        -->
+    <aura:attribute name="moretabs" type="Aura.Component[]"/>
+   <!-- The tabset contains all of the tabs. On click, it changes the respective tab to be 'up front'. 
+		These tabs can be configured to inject the content via lazy-load, when a given tab is selected.
+		For now, the first tab (Week 1) is hard coded, all the extra tabs are held in {!v.moretabs},
+		and at the end we have the addTab tab. 			
+        -->
+    <aura:attribute name='batch' type='Training__c' />
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <lightning:tabset>
+        <lightning:tab class="slds-m-left_large, weekly-tab" onblur='{!c.testFocus}' onactive="{! c.handleActive }" label="Week 1" id="Week1"/>
+        {!v.moretabs}
+        <lightning:tab class="slds-m-left_large,slds-p-left_x-large,slds-p-right_x-large, weekly-tab" onactive="{! c.handleAddTab }" label="+" id="addTab" />
+    </lightning:tabset>
+    
+</aura:component>
