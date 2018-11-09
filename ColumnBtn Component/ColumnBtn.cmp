@@ -31,8 +31,8 @@
                     <div class="slds-size_6-of-12 slds-p-left_xx-large slds-p-horizontal_x-large " >
                         
                        <!--User entry for Category-->  
-                       <lightning:select aura:id='input1' value='{!v.cat}'  label="Assessment Category" name="AssCat" > 
-                            <option value="Please Select One" default="true" disabled="true" >Please Select One</option>
+                       <lightning:select required="true" aura:id='input1' value='{!v.cat}'  label="Assessment Category" name="AssCat" messageWhenValueMissing="Choose one!"> 
+                            <option value="" default="true">Please Select One</option>
                         <aura:iteration items="{!v.Category}" var="category">
                             <option value="{!category.Name}">{!category.Name}</option>
                         </aura:iteration>
@@ -41,8 +41,7 @@
                     <div class="slds-size_5-of-12 slds-p-left_xx-small slds-p-horizontal_x-large " >
                         
                          <!--User entry for Type-->  
-                          <lightning:select aura:id='input1' label="Assignment Category" name="AssCat" value="{!v.Caliber_Assessment__c.Assessment_Type__c}">       
-            				<option value="">Choose one...</option>
+                          <lightning:select  aura:id='input1' label="Assignment Category" name="AssCat" value="{!v.type}" messageWhenValueMissing="Choose one!">       
             					<aura:iteration items="{!v.picklistValues}" var="item">
                						 <option value="{!item.value}">
                    						 {!item}
@@ -56,7 +55,7 @@
                     <div class="slds-size_6-of-12 slds-p-left_xx-large slds-p-horizontal_x-large " >
                         
                            <!--User entry for Points-->  
-                        <lightning:input aura:id='input3' value='{!v.point}' label="Max Points" name="myname"  /> 
+                        <lightning:input required="true" aura:id='input3' value='{!v.point}' label="Max Points" name="myname"  /> 
                     </div>
                 </div>
             </div>
