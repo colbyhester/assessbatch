@@ -61,6 +61,39 @@
         $A.util.removeClass(cmpTarget, 'slds-fade-in-open'); 
         
         
+        var cmpTarget = cmp.find('Modalbox');
+        var cmpBack = cmp.find('Modalbackdrop');
+        $A.util.removeClass(cmpBack,'slds-backdrop--open');
+        $A.util.removeClass(cmpTarget, 'slds-fade-in-open'); 
+        
+        //Vobert's Code
+        var assignment = cmp.get("v.Assignment");
+        var week = cmp.get("v.week");
+        var batch = cmp.get("v.batchID");
+        var saving = cmp.get("c.saving");
+        var point = cmp.get("v.point");
+        var category = cmp.get("v.cat");
+        var type = cmp.get("v.type");
+        
+        assignment.Training_Id__c = batch;
+        assignment.Week_Number__c = week;
+        assignment.Max_Points__c = point;
+        assignment.Assessment_Category__c = category;
+        assignment.Assessment_Type__c = type;
+        
+        
+        console.log(JSON.stringify(assignment));
+        
+        saving.setParams({"Assignment": assignment});
+        
+        saving.setCallback(this,function(savingfunction){
+            if(savingfunction.getState() === "SUCCESS"){
+            	console.log(savingfunction.getReturnValue());    
+            }
+        });
+        $A.enqueueAction(saving);
+        console.log(saving);
+        
         
     },
     
