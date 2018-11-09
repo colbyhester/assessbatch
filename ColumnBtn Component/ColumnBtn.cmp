@@ -1,7 +1,17 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global" controller='ColumnBtnController'>
-    <aura:attribute name='cat' type='string'/>
+    <aura:attribute name='cat' type='id'/>
     <aura:attribute name='type' type='string'/>
     <aura:attribute name='point' type='string'/>
+    
+    <aura:attribute name='Assessment' type='Caliber_Assessment__c' default = '{"sObjectType":"Caliber_Assessment__c",
+                                                                              "Week_Number__c":0,
+                                                                              "Training_Id__c":"",
+                                                                              "Max_Points__c":0,
+                                                                              "Assessment_Type__c":"",
+                                                                              "Assessment_Category__c":""}' />
+    <aura:attribute name="batchID" type="Id" default='a0Df4000006FaijEAC'/>
+    <aura:attribute name='week' type='Integer' default='1'/>
+   
      
     <!--event to say save button was clicked-->
     <aura:registerEvent name="DynComp" type="c:DynComp"/>
@@ -12,7 +22,7 @@
     
     <!--Used to return values for Caliber Category-->
     <aura:attribute name='Category' type='Caliber_Category__c[]'/>
-    <aura:handler name="init" value="{!this}" action="{!c.doYes}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     <ui:button class="slds-align_absolute-center" label="Create Assignement" press="{!c.openmodal}"  /> 
     <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal slds-modal_large">
@@ -31,17 +41,17 @@
                     <div class="slds-size_6-of-12 slds-p-left_xx-large slds-p-horizontal_x-large " >
                         
                        <!--User entry for Category-->  
-                       <lightning:select required="true" aura:id='input1' value='{!v.cat}'  label="Assessment Category" name="AssCat" messageWhenValueMissing="Choose one!"> 
+                       <lightning:select required="true" aura:id='input1' value='{!v.cat}'  label="Assessment Category" name="AssessmentCat" messageWhenValueMissing="Choose one!"> 
                             <option value="" default="true">Please Select One</option>
                         <aura:iteration items="{!v.Category}" var="category">
-                            <option value="{!category.Name}">{!category.Name}</option>
+                            <option value="{!category.Id}">{!category.Name}</option>
                         </aura:iteration>
                        </lightning:select>
                     </div>
                     <div class="slds-size_5-of-12 slds-p-left_xx-small slds-p-horizontal_x-large " >
                         
                          <!--User entry for Type-->  
-                          <lightning:select  aura:id='input1' label="Assignment Category" name="AssCat" value="{!v.type}" messageWhenValueMissing="Choose one!">       
+                          <lightning:select  aura:id='input1' label="Assessment Category" name="AssessmentCat" value="{!v.type}" messageWhenValueMissing="Choose one!">       
             					<aura:iteration items="{!v.picklistValues}" var="item">
                						 <option value="{!item.value}">
                    						 {!item}
