@@ -4,13 +4,15 @@
     <aura:attribute name='note' type='Caliber_Note__c' />
     <aura:attribute name='week' type='Integer' />
     <aura:handler event='c:saveNotes' action='{!c.handleSave}'/>
+    
+       <!-- Checks if button was pressed -->  
     <aura:handler event="c:DynComp" action="{!c.DynComp}"  />
     <tr id='KleanNuts' class="slds-hint-parent">
         <th data-label="Trainee" scope="row">
             <div class="slds-truncate" title="Name">{!v.associate.Name}</div>
         </th>
         
-    
+    		<!-- where the dynmaic component will be entered -->
                 {!v.body}
            
         <td data-label="Notes">

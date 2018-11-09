@@ -2,10 +2,15 @@
     <aura:attribute name='cat' type='string'/>
     <aura:attribute name='type' type='string'/>
     <aura:attribute name='point' type='string'/>
-   <aura:registerEvent name="DynComp" type="c:DynComp"/>
+     
+    <!--event to say save button was clicked-->
+    <aura:registerEvent name="DynComp" type="c:DynComp"/>
    
+    <!-- Used to return picklist value of Assess Type-->
     <aura:attribute name="picklistValues" type="Object" />
     <c:PicklistComponent sObjectName='Caliber_Assessment__c' fieldName='Assessment_Type__c' picklistValues='{!v.picklistValues}' />
+    
+    <!--Used to return values for Caliber Category-->
     <aura:attribute name='Category' type='Caliber_Category__c[]'/>
     <aura:handler name="init" value="{!this}" action="{!c.doYes}" />
     
@@ -24,7 +29,9 @@
                 </div>    
                 <div class="slds-grid slds-p-top_medium">
                     <div class="slds-size_6-of-12 slds-p-left_xx-large slds-p-horizontal_x-large " >
-                       <lightning:select aura:id='input1' value='{!v.cat}'  label="Assignment Category" name="AssCat" > 
+                        
+                       <!--User entry for Category-->  
+                       <lightning:select aura:id='input1' value='{!v.cat}'  label="Assessment Category" name="AssCat" > 
                             <option value="Please Select One" default="true" disabled="true" >Please Select One</option>
                         <aura:iteration items="{!v.Category}" var="category">
                             <option value="{!category.Name}">{!category.Name}</option>
@@ -32,6 +39,8 @@
                        </lightning:select>
                     </div>
                     <div class="slds-size_5-of-12 slds-p-left_xx-small slds-p-horizontal_x-large " >
+                        
+                         <!--User entry for Type-->  
                           <lightning:select aura:id='input1' label="Assignment Category" name="AssCat" value="{!v.Caliber_Assessment__c.Assessment_Type__c}">       
             				<option value="">Choose one...</option>
             					<aura:iteration items="{!v.picklistValues}" var="item">
@@ -45,6 +54,8 @@
                 
                 <div class="slds-grid slds-p-top_x-small">
                     <div class="slds-size_6-of-12 slds-p-left_xx-large slds-p-horizontal_x-large " >
+                        
+                           <!--User entry for Points-->  
                         <lightning:input aura:id='input3' value='{!v.point}' label="Max Points" name="myname"  /> 
                     </div>
                 </div>

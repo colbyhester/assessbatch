@@ -46,10 +46,11 @@
         
     },
     
+    //Used when the button in ColumnBtn is pressed
     DynComp : function(cmp, event, helper) {
         
          
-         
+         //Components needed to insert 
         var newComponents = [];
         newComponents.push(["aura:html", {
             "tag": "td"
@@ -70,7 +71,7 @@
             }]);
         
        
-        
+        //Dynamic nested component
         $A.createComponents(newComponents,
         function (components, status, errorMessage) {
             if (status === "SUCCESS") {

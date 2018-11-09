@@ -12,6 +12,7 @@
         $A.util.addClass(cmpBack, 'slds-backdrop--open'); 
     },
     
+    //Pulls from Controller to get list of Categories to insert in module options
     doYes: function(cmp) {
         var action = cmp.get("c.getCat");
         action.setCallback(this, function(response){
@@ -24,9 +25,12 @@
         
     },
     
+    //What happens when a button is saved
     HandleIt : function(cmp, event, helper) {
         
-        var table = document.getElementById("Colbysucks").insertCell(1);
+        // Temporary fix to add the correct th into the datatable
+        
+        var table = document.getElementById("NewHeader").insertCell(1);
         var tr = document.createElement('tr');
         tr.class="slds-line-height_reset";
         table.appendChild(tr);
@@ -42,11 +46,13 @@
         table.appendChild(th); 
         table.appendChild(div);
               
+        
+        //alerts batchTableRow that the event has been fired once btn been pressed i
         var theEvent = $A.get("e.c:DynComp");
     	theEvent.fire();
         
         
-        
+        //closes themodal
         var cmpTarget = cmp.find('Modalbox');
         var cmpBack = cmp.find('Modalbackdrop');
         $A.util.removeClass(cmpBack,'slds-backdrop--open');
