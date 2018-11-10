@@ -2,7 +2,7 @@
     closeModal:function(component,event,helper){    
         var cmpTarget = component.find('Modalbox');
         var cmpBack = component.find('Modalbackdrop');
-        $A.util.removeClass(cmpBack,'slds-backdrop--open');
+        $A.util.removeClass(cmpBack,'slds-backdrop--open') ;
         $A.util.removeClass(cmpTarget, 'slds-fade-in-open'); 
     },
     openmodal:function(component,event,helper) {
@@ -29,7 +29,14 @@
     HandleIt : function(cmp, event, helper) {
         
         // Temporary fix to add the correct th into the datatable
-        
+       
+       
+        var allValid = cmp.find('input').reduce(function (validSoFar, inputCmp) {
+            return validSoFar && !inputCmp.get('v.validity').valueMissing;
+        }, true);
+        if (allValid) {
+            
+		
         var table = document.getElementById("NewHeader").insertCell(1);
         var tr = document.createElement('tr');
         tr.class="slds-line-height_reset";
@@ -45,16 +52,8 @@
         div.innerHTML = id + " " + id2 + " " + id3 + '%';
         table.appendChild(th); 
         table.appendChild(div);
-              
-     
-          console.log("hello world");
         
-        //alerts batchTableRow that the event has been fired once btn been pressed i
-        var theEvent = $A.get("e.c:DynComp");
-    	theEvent.fire();
-        
-        
-        //closes themodal
+     	 //closes themodal
         var cmpTarget = cmp.find('Modalbox');
         var cmpBack = cmp.find('Modalbackdrop');
         $A.util.removeClass(cmpBack,'slds-backdrop--open');
@@ -67,7 +66,7 @@
         $A.util.removeClass(cmpTarget, 'slds-fade-in-open'); 
         
         //Vobert's Code
-        var assignment = cmp.get("v.Assignment");
+        var assignment = cmp.get("v.Assessment");
         var week = cmp.get("v.week");
         var batch = cmp.get("v.batchID");
         var saving = cmp.get("c.saving");
@@ -93,6 +92,15 @@
         });
         $A.enqueueAction(saving);
         console.log(saving);
+        
+        //alerts batchTableRow that the event has been fired once btn been pressed i
+        var theEvent = $A.get("e.c:DynComp");
+    	theEvent.fire();
+        
+        } else{ 
+            alert('Please update the invalid form entries and try again.');
+        }
+       
         
         
     },

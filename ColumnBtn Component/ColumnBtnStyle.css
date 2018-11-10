@@ -1,0 +1,21 @@
+.THIS.slds-button{
+    color: #F26925; /* primary rev orange */
+    font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    
+    
+    font-size: 14px;
+    
+}
+
+.THIS.slds-button:hover{
+    font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    transition: ease-in-out 0.4s;
+    background-color: #2574a9;
+   color: #fff; 
+}
+
+.THIS .save{
+  background-color: #F26925; 
+  color: white;
+  font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
