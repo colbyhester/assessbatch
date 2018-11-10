@@ -2,6 +2,8 @@
     
     doInit : function(cmp, evnt, hlpr){
         var action = cmp.get('c.getBatch');
+        action.setParams({'batchID':cmp.get('v.batchID')});
+        //console.log('Batch ID: '+cmp.get('v.batchID'));
         action.setCallback(this, function(response){
             if(response.getState()==='SUCCESS'){
                 cmp.set('v.batch',response.getReturnValue());
@@ -20,7 +22,7 @@
     },
     // Creates a new tab
     handleAddTab: function(component, event,helper) {
-        console.log(document.getElementById('addTab').innerHTML);
+        //console.log(document.getElementById('addTab').innerHTML);
         helper.addTab(component,event);
         var action = component.get('c.incrementWeek');
         action.setParams({'batch':component.get('v.batch')});

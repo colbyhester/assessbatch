@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION">
+ 
+    <aura:attribute name='Assessment' type='Caliber_Assessment__c' />
+</aura:event>

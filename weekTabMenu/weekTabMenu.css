@@ -1,0 +1,27 @@
+
+.THIS .slds-tabs_default__link, .THIS .slds-tabs--default__link {
+	font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #F26925; /* primary rev orange */
+    font-weight: 700;
+}
+
+.THIS .slds-tabs_default__link:hover, .THIS .slds-tabs--default__link:hover{
+    font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    transition: ease-in-out 0.4s;
+    color: #474C55;   /* primary dark gray */
+    font-size: 14px;
+    font-weight: 700;    
+}
+
+.THIS .slds-tabs_default__item:hover, .THIS .slds-tabs--default__item:hover{
+    background-color: #B9B9BA; /*secondary light gray */
+    transition: ease-in-out 0.4s;
+}
+
+.THIS .slds-tabs_default__item.slds-active:after, .THIS .slds-tabs_default__item.slds-is-active:after, .THIS .slds-tabs--default__item.slds-active:after, .THIS .slds-tabs--default__item.slds-is-active:after {
+   background-color: #F26925;  /* primary rev orange */
+}
+.THIS .slds-tabs_default__item:hover:after, .THIS .slds-tabs--default__item:hover:after{
+   background-color: #F26925;  /* primary rev orange */
+}

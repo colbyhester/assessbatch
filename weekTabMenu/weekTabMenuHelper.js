@@ -4,14 +4,18 @@
         // When the tab becomes active, find the tab by the id and inject the corresponding content.
         // See this example for how this will need to be done. 
         var week = tab.get('v.id').split('k')[1];
+        var batchID = cmp.get('v.batchID');
+        this.injectComponent('c:batchTable', tab, week, batchID);
         
-        this.injectComponent('c:batchTable', tab, week);
-
+        var weekEvent = $A.get('e.c:weekChangeEvent');
+		weekEvent.setParams({"week" : week});
+        weekEvent.fire(); 
     },
-    injectComponent: function (name, target,week) {
+    injectComponent: function (name, target,week,id) {
         // inserts the content into the tab
         $A.createComponent(name, {
-            'week' : week
+            'week' : week,
+            'batchID' : id
         }, function (contentComponent, status, error) {
             if (status === "SUCCESS") {
                 target.set('v.body', contentComponent);

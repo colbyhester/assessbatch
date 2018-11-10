@@ -9,9 +9,11 @@
 		For now, the first tab (Week 1) is hard coded, all the extra tabs are held in {!v.moretabs},
 		and at the end we have the addTab tab. 			
         -->
-    <aura:attribute name='batch' type='Training__c' />
+    <aura:attribute name="batchID" type="Id" />
+    <aura:attribute name='batch' type="Training__c" />
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
-
+	<aura:registerEvent name="weekEvent" type="c:weekChangeEvent"/>
+    
     <lightning:tabset>
         <lightning:tab class="slds-m-left_large, weekly-tab" onblur='{!c.testFocus}' onactive="{! c.handleActive }" label="Week 1" id="Week1"/>
         {!v.moretabs}

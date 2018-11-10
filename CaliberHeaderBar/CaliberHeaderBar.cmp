@@ -1,0 +1,35 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+	<!-- this is the header bar. It should contain the following:
+  - Revature Logo/home page link
+  - Home button
+  - Manage Batch button
+  - Assess Batch button
+  - Quality Audit button
+  - Panel
+  - Reports
+  - Settings	
+   -->
+    
+  
+    <lightning:button variant="base" label="Base" class="slds-button logobtn" onclick="{!c.handleClickHomeLogo }" > 
+        <div id="logoImage" /> <!-- the actual logo is added as a background image in css -->
+    </lightning:button>
+    
+    <!-- the rest of the buttons are using float: right, the first one to be read is the one that goes to right-hand edge 
+	     of the container, and the ones read after it get placed to the left of the previous button, so they have to the 
+		 'added' in reverse order to match the original sequence														-->
+    
+    <lightning:buttonMenu class="slds-float_right slds-p-around_medium" aura:id="menu" iconName="utility:settings" alternativeText="Settings menu" label="Settings" onselect="{! c.handleSelect }">
+        <lightning:menuItem label="Trainers" value="MenuItemOne" />
+        <lightning:menuItem label="Locations" value="MenuItemTwo" />
+        <lightning:menuItem label="Category" value="MenuItemThree" />        
+    </lightning:buttonMenu>
+        
+    <lightning:button class="slds-float_right slds-p-around_medium" variant="base" label="Reports" onclick="{! c.handleClick }"/>
+    <lightning:button class="slds-float_right slds-p-around_medium" variant="base" label="Panel" onclick="{! c.handleClick }"/>
+    <lightning:button class="slds-float_right slds-p-around_medium" variant="base" label="Quality Audit" onclick="{! c.handleClick }"/>
+    <lightning:button class="slds-float_right slds-p-around_medium" variant="base" label="Assess Batch" onclick="{! c.handleClick }"/>
+    <lightning:button class="slds-float_right slds-p-around_medium" variant="base" label="Home" onclick="{! c.handleClick }"/>  
+    
+    
+</aura:component>

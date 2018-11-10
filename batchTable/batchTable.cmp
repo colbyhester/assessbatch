@@ -1,17 +1,20 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="batchTableController">
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:attribute name="associates" type="Contact[]"/>
-    <aura:attribute name="batchID" type="Id"/>
-    <aura:attribute name='week' type='Integer' default='4'/>
+    <aura:attribute name="batchID" type="Id" />
+    <aura:attribute name='week' type='Integer'/>
+    <aura:attribute name='Assessments' type='Caliber_Assessment__c[]' />
+    <aura:handler event="c:DynComp" action="{!c.addHeader}"  />
     <aura:registerEvent name='save' type='c:saveNotes' />
     
  
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
     	<thead>
-			<tr class="slds-line-height_reset">
+			<tr id='NewHeader' class="slds-line-height_reset">
             	<th class="slds-text-title_caps" scope="col">
                 	<div class="slds-truncate" title="Trainee">Trainee</div>
                 </th>
+                {!v.body}
                 <th class="slds-text-title_caps" scope="col">
                     <div class="slds-truncate" title="Notes">Notes</div>
                 </th>   	

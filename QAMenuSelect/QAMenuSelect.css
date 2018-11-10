@@ -1,0 +1,48 @@
+/*Aligns the combobox next to each other */
+.THIS .selectBatchCombobox {
+    display: inline-block;
+   /*-- padding: 7px;  */    
+}
+
+div.THIS{
+    border-bottom: #ddd solid 1px;
+}
+
+/* Removes the combobox border/Sets font color*/
+.THIS .slds-combobox__input{
+    border: none;
+    color: #f26925; /*Primary Revature Orange */
+}
+
+/* Sets the background effect on combobox to light gray */
+.THIS .slds-input.slds-combobox__input:hover{
+    background-color: #EEEEEE; /* light gray */
+    color: #23527C; /* Navy Blue */
+    transition: ease-in-out 0.4s;
+    cursor: pointer;
+}
+
+/*Sets the font for the selected combo box */
+.THIS .slds-input.slds-combobox__input{
+    background: none;
+    font-weight: bold;
+    font-size: 15px;
+}
+/* Sets the color of the dropdown item's background */
+.THIS .slds-dropdown-trigger.slds-is-open .slds-listbox__option.slds-has-focus{
+    background-color: light-gray;
+}
+/*Sets font for the dropdown item */
+.THIS .slds-dropdown-trigger.slds-is-open{
+	font-weight: bold;
+}
+
+/*Rotates Dropdown Arrow */
+.THIS .slds-dropdown-trigger.slds-is-open .slds-combobox__form-element .slds-icon{
+    transform: rotate(180deg); 
+}
+
+/* Sets the icons color */
+.THIS .slds-icon-text-default{
+    fill: #f26925; /*Primary Revature Orange */
+}

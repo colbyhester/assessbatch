@@ -1,8 +1,8 @@
 public class batchTableController {
 
     @AuraEnabled
-    public static Training__c getBatch(){
-        return [SELECT Name, Caliber_Number_of_Weeks__c FROM Training__c LIMIT 1];
+    public static Training__c getBatch(ID batchID){
+        return [SELECT Name, Caliber_Number_of_Weeks__c FROM Training__c WHERE ID=:batchID LIMIT 1];
     }
     
     @AuraEnabled
@@ -58,6 +58,11 @@ public class batchTableController {
     public static Caliber_Note__c saveNote(Caliber_Note__c note){
         update note;
         return note;
+    }
+    
+    @AuraEnabled
+    public static List<Caliber_Assessment__c> getAssessments(ID batchID, Integer week){
+        return [SELECT Max_Points__c, Assessment_Title__c FROM Caliber_Assessment__c WHERE Week_Number__c=:week AND Training_Id__c=:batchID];
     }
     
     

@@ -1,0 +1,47 @@
+
+
+.THIS .slds-button:focus{
+    box-shadow: none;
+    outline: none;
+}
+.THIS.slds-button, .THIS .slds-button{
+    font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    transition: ease-in-out 0.4s;
+    color: #474C55;   /* primary dark gray */
+    font-size: 14px;
+    font-weight: 700;   
+}
+.THIS.slds-button:hover, .THIS .slds-button:hover{
+    font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    transition: ease-in-out 0.4s;
+    color: #F26925; /* primary rev orange */
+    font-size: 14px;
+    font-weight: 700;   
+}
+
+.THIS #logoImage{
+    background-image: url('/resource/revaturelogo/');
+    /* the image is a static resource called 'revaturelogo' and its directly in the static resource location */
+    background-size: cover;
+    background-position: center;    
+    background-repeat: no-repeat; 
+    display: inline-block; 
+    width:237px; 	
+    height:72px;
+}
+.THIS .logobtn:hover{
+    background-color: none;
+    outline: none !important;
+}
+.THIS .logobtn:active{
+    background-color: none;
+    box-shadow:none;
+    border:none;
+    outline: none !important;
+}
+.THIS .logobtn:focus{
+    background-color: none;
+    box-shadow:none;
+    border:none;
+    outline: none !important;
+}

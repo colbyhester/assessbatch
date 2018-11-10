@@ -1,17 +1,17 @@
 ({
-    doInit : function(component, event, helper) {
-        var action = component.get("c.getNote");
+	doInit : function(component, event, helper) {
+        var action = component.get("c.getGrade");
 
-        let week = component.get('v.week');
-        let ass = component.get('v.associate');
+        let assess = component.get('v.assessment');
+        let assoc = component.get('v.associate');
         //console.log(typeof week);
         //console.log(ass.Id);
-        action.setParams({'week' : week , 'associate' : ass.Id});
+        action.setParams({'assessment' : assess.Id , 'associate' : assoc.Id});
         // Add callback behavior for when response is received
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                component.set("v.note", response.getReturnValue());
+                component.set("v.grade", response.getReturnValue());
                 //console.log(response.getReturnValue());
                 
             }
@@ -24,16 +24,16 @@
         $A.enqueueAction(action);
     },
     
-    handleSave : function(component, event, helper){
-        var action = component.get('c.saveNote');
-        var note = component.get('v.note');
-		//console.log(note);
-        action.setParams({'note':note});
+    handleBlur : function(component, event, helper){
+        var action = component.get('c.saveGrade');
+        var grade = component.get('v.grade');
+		//console.log(grade);
+        action.setParams({'grade':grade});
         // Add callback behavior for when response is received
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
-                component.set("v.note", response.getReturnValue());
+                component.set("v.grade", response.getReturnValue());
                 //console.log(response.getReturnValue());
             }
             else {
