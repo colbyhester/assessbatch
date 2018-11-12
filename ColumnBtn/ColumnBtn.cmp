@@ -11,8 +11,11 @@
                                                                               "Assessment_Category__c":""}' />
     <aura:attribute name="batchID" type="Id" default='a0Df4000006RH8sEAG'/>
     <aura:attribute name='week' type='Integer' default='1'/>
+    <aura:attribute name='grades' type='Caliber_Grade__c[]'/>
+    <aura:attribute name='associates' type='Contact[]' />
     <aura:handler event="c:weekChangeEvent" action="{!c.weekChange}"  />
-     
+    <aura:handler event='c:sendAssociates' action='{!c.setAssociates}' />
+    
     <!--event to say save button was clicked-->
     <aura:registerEvent name="DynComp" type="c:DynComp"/>
    
@@ -23,9 +26,9 @@
     <!--Used to return values for Caliber Category-->
     <aura:attribute name='Category' type='Caliber_Category__c[]'/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <div class='slds-float--right'>
+    
 		<lightning:button  variant="scoped" class='slds-button' iconName="utility:add" label="Create Assessment" onclick="{!c.openmodal}"  />    
-    </div>
+    
     <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal slds-modal_large   ">
         <div class="slds-modal__container custom" style="width: 20%;">
             <div class="slds-modal__header">

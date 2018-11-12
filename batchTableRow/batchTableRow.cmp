@@ -3,9 +3,10 @@
     <aura:attribute name='associate' type='Contact' />
     <aura:attribute name='note' type='Caliber_Note__c' />
     <aura:attribute name='week' type='Integer' />
-    <aura:attribute name='Assessment' type='Caliber_Assessment__c' />
+    <aura:attribute name='grades' type='Caliber_Grade__c[]'/>
     <aura:handler event='c:saveNotes' action='{!c.handleSave}'/>
     <aura:handler event="c:DynComp" action="{!c.DynComp}"  />
+    
     <tr class="slds-hint-parent">
         <th data-label="Trainee" scope="row">
             <div class="slds-truncate" title="Name">{!v.associate.Name}</div>

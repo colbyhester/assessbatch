@@ -3,11 +3,13 @@
     <aura:attribute name="associates" type="Contact[]"/>
     <aura:attribute name="batchID" type="Id" />
     <aura:attribute name='week' type='Integer'/>
+    <aura:attribute name='note' type='Caliber_Note__c' />
     <aura:attribute name='Assessments' type='Caliber_Assessment__c[]' />
+    <aura:attribute name='grades' type='Caliber_Grade__c[]' />
     <aura:handler event="c:DynComp" action="{!c.addHeader}"  />
-    <aura:registerEvent name='save' type='c:saveNotes' />
+    <aura:registerEvent name='sendAssociates' type='c:sendAssociates' />
     
- 
+ 	
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
     	<thead>
 			<tr id='NewHeader' class="slds-line-height_reset">
@@ -22,10 +24,11 @@
         </thead>
         <tbody>
         	<aura:iteration items="{!v.associates}" var="ass">
-                <c:batchTableRow associate='{!ass}' week='{!v.week}' />
+                <c:batchTableRow associate='{!ass}' week='{!v.week}' grades='{!v.grades}' />
             </aura:iteration>
         </tbody>
     </table>
-    <lightning:button label='Save' title='save' onclick='' />
+    <ui:inputTextArea aura:id="textarea" value="{!v.note.Note_Content__c}" blur="{!c.handleSave}"/>
+    
     
 </aura:component>

@@ -65,11 +65,16 @@
         }]);
         var assoc = cmp.get('v.associate');
         var assess = event.getParam("Assessment");
+        var grades = event.getParam('grades');
+        //console.log(JSON.stringify(grades));
+        //console.log(JSON.stringify(assoc));
+        //console.log(JSON.stringify(assess));
     	newComponents.push(["c:InputGradeField",
             {
                 "aura:id" : "oTextarea", 
                 "assessment": assess,
-                "associate": assoc
+                "associate": assoc,
+                "grades" : grades
             }]);
         //console.log(newComponents[2]);
         //console.log(assess);

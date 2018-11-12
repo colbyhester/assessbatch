@@ -71,36 +71,37 @@
             //Vobert's Code
             var assignment = cmp.get("v.Assessment");
             var week = cmp.get("v.week");
-            var batch = cmp.get("v.batchID");
-            var saving = cmp.get("c.saving");
+            var batch = cmp.get("v.batchID");            
             var point = cmp.get("v.point");
             var category = cmp.get("v.cat");
             var type = cmp.get("v.type");
             
+            assignment.Id = null;
             assignment.Training_Id__c = batch;
             assignment.Week_Number__c = week;
             assignment.Max_Points__c = point;
             assignment.Assessment_Category__c = category;
             assignment.Assessment_Type__c = type;
-            console.log(JSON.stringify(assignment));
+            //console.log(JSON.stringify(assignment));
             //alerts batchTableRow that the event has been fired once btn been pressed i
-            
+            var saving = cmp.get("c.saving");
             
             saving.setParams({"Assignment": assignment});
             
             saving.setCallback(this,function(savingfunction){
                 if(savingfunction.getState() === "SUCCESS"){
-                    console.log(savingfunction.getReturnValue()); 
+                    //console.log(savingfunction.getReturnValue());
                     var assessment = savingfunction.getReturnValue();
-                    var theEvent = $A.get("e.c:DynComp");
-                    theEvent.setParams({"Assessment" : assessment});
-                    theEvent.fire(); 
+                    cmp.set('v.Assessment',assessment);
+                    var associates = cmp.get('v.associates');
                     
-                    console.log(JSON.stringify(assessment));
+                    helper.createGrades(cmp,assessment,associates);
+                    
+                    //console.log(JSON.stringify(assessment));
                 }
             });
             $A.enqueueAction(saving);
-            console.log(saving);
+            //console.log(saving);
         } else{ 
             alert('Please update the invalid form entries and try again.');
         }
@@ -110,6 +111,10 @@
         var week = event.getParam("week");
         component.set('v.week',week);
         
+    },
+    setAssociates : function(component,event,helper){
+        var associates = event.getParam("associates");
+        component.set('v.associates',associates);
     }
     
 })

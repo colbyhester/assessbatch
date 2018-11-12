@@ -1,4 +1,4 @@
 <aura:event type="APPLICATION">
- 
+    <aura:attribute name='grades' type='Caliber_Grade__c[]'/>
     <aura:attribute name='Assessment' type='Caliber_Assessment__c' />
 </aura:event>

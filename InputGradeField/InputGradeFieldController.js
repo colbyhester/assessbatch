@@ -1,9 +1,22 @@
 ({
 	doInit : function(component, event, helper) {
-        var action = component.get("c.getGrade");
+        
 
         let assess = component.get('v.assessment');
         let assoc = component.get('v.associate');
+        let grades = component.get('v.grades');
+        //console.log(JSON.stringify(grades));
+        for(let i=0;i<grades.length;i++){
+
+            if(grades[i].Caliber_Assessment__c==assess.Id&&grades[i].Contact__c==assoc.Id){
+                component.set('v.grade', grades[i]);
+                //console.log('found grade');
+            }
+        }
+        
+        
+        
+        /*var action = component.get("c.getGrade");
         //console.log(typeof week);
         //console.log(ass.Id);
         action.setParams({'assessment' : assess.Id , 'associate' : assoc.Id});
@@ -21,7 +34,7 @@
             }
         });
         // Send action off to be executed
-        $A.enqueueAction(action);
+        $A.enqueueAction(action);*/
     },
     
     handleBlur : function(component, event, helper){
