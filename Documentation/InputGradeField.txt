@@ -1,0 +1,44 @@
+**********INPUTGRADEFIELD COMPONENT**********
+
+This component represents a single grade field that is displayed within the batchTableRow component. It is 
+used to give trainers the ability to add a Caliber_Grade__c record to specific Caliber_Assessment__c record that is
+linked to a Contact(trainee). It is composed of a simple <lightning:input> component that was then modified to 
+be much smaller, as to avoid unneeded clutter on each row. Below we will describe the different methods used by
+this component and how to use them. 
+
+**CONTROLLERS**
+
+1. INPUTGRADEFIELDCONTROLLER.APXC
+
+This is the server-side controller for the InputGradeField component, and serves as the means of pulling 
+information from the database to use in populating the Caliber_Grade__c fields that are shown to users. From 
+within this controller, we have two methods that handle the operations necessary to the component, which are 
+detailed below. 
+
+GETGRADE 
+
+This method is in charge of fetching the Caliber_Grade__c record associated with the Id of the assessment and 
+associate that the note would be linked to. First it checks to see if a grade exists that meets those criteria, 
+and if one does not, it creates one with a default value of 0. This ensures that even if there is not an existing
+grade for the assessment and associate in question, one will be created for the trainer to then update as the need
+arises. Whichever result is determined is then sent back to the client-side controller to be handled. 
+
+Parameters: Id of assessment, Id of associate 
+
+SAVEGRADE
+
+This method is used to update and return a specified Caliber_Grade__c record that has been altered within the 
+component. This is accomplished by passing it the grade in question, and then calling the update DML command to 
+change it within the database. This allows users to dynamically update the grades for trainees and ensures that 
+the new values will carry over when the page is reloaded. 
+
+Parameters: Caliber_Grade__c object needing to be updated
+
+2. INPUTGRADEFIELDCONTROLLER.JS
+
+This is the client-side controller for the InputGradeField component. It is responsible for making calls to the 
+server through its controller and handling the values returned by those calls. By exchanging data this way, users
+are able to manipulate records within the database and have them still be accurate and intact each time they log
+into the application. Below we will detail each of the methods that are found in this controller, as well as what 
+they accomplish. 
+

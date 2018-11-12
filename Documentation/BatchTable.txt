@@ -1,0 +1,85 @@
+**********BATCHTABLE COMPONENT**********
+
+This component is used to display the list of all trainees that are associated with a given batch. On the
+component, there are multiple columns displaying the name of the trainee, any grades for assessments that 
+were given for a given week, as well as any notes made by their trainer to describe their overall performance.
+In order to show all the rows for each trainee, the batchTableRow component is nested within this component 
+equal to the number of trainees there are for the specified batch. For more information about that component,
+please refer to its corresponding documentation.
+
+**CONTROLLERS**
+
+1. BATCHTABLECONTROLLER.APXC
+
+This is the server-side controller for the batchTable component, which allows it to communicate with the database.
+Within it are several of the core methods needed to display the correct information within the table, such as the
+trainees for the given batch, as well as their grades and notes. Below we will given a brief rundown on each 
+method(which is also provided in the code for each class as well) to help give a better understanding on how and 
+when to call each of them. 
+
+GETASSOCIATES
+
+This method is used to get a list of all the Contacts(trainees) associated with a given Training__c(batch). As
+mentioned, it takes in an Id equal to the one of the batch you want to get the list from. Using this Id, it then
+cycles through all the Contacts in the database and saves a list of all the ones who are linked to the batch that
+has the Id, which is then returned to the user. 
+
+Parameters: Id of the batch you want to pull trainees from
+
+GETNOTE
+
+This method is used to get the note that is associated to a specified Contact and week number, which are passed in
+as parameters. Using these values, it cycles through all existing notes to find the one that is linked to the 
+trainee and week in question. If one does exist, it is returned to the user. If one does not already exist, then 
+one is created with no contents and associated with the trainee and week number specified in the parameters. This 
+ensures that even if no note was made yet for a trainee during a certain week, there would always be one available
+to edit for the trainer. 
+
+Parameters: Decimal of week number, Id of associate
+
+SAVENOTE
+
+This method takes in a Caliber_Note__c object as a parameter that has been modified by a user within the 
+component, and simply updates it. After the update has been committed to the database, it is returned to the
+user. 
+
+Parameters: Id of note you are updating
+
+2. BATCHTABLECONTROLLER.JS
+
+This is the client-side controller for the component. It is responsible for sending requests to the server-side 
+component and handling the results of those calls. Its main purpose is to fetch a list of the trainees, notes, 
+assessments, and grades for the table to be displayed. Below are a list of all the functions that are within this 
+controller and what they do. 
+
+DOINIT
+
+This is the initial function that is immediately ran upon loading the component, and is responsible for fetching
+all the associates needed for the table being shown by calling the getAssociates method in the server-side 
+controller. This list is then sent back to the component to be used in generating all the different batchTableRow 
+components for each trainee that is returned. 
+
+Parameters(for server-side controller): Id of batch being sent to Apex controller
+
+SAVENOTES
+
+This function is responsible for taking the updated note field that a user has entered and sending its value to 
+the server-side controller to be saved. This is accomplished by calling the saveNote method from the server-side 
+controller and having it update the ntoe in question within the database. This allows users to make dynamic 
+changes to note fields and have them retain those changes anytime the page is refreshed. 
+
+Parameters: Id of note you want to update 
+
+HANDLESENTID
+
+This function is a handler for when the component is sent a new batch Id (such as when a new batch is selected).
+This effectively sets the value of the batchId attribute within the component to the value that was sent to the 
+component, which refreshes the table to show the list fo trainees from the specified batch instead. 
+
+Parameters: None
+
+OTHER CONSIDERATIONS
+
+This component requires a handler to listen for the custom sendBatchId event, which is fired when the user 
+selects a new batch from the filters on the top of the page. This is necessary to ensure the table is populated 
+with the correct list of trainees that apply to the newly-selected batch. 

@@ -1,0 +1,8 @@
+**********BATCHTABLEROW COMPONENT**********
+
+This component is responsible for displaying a single row within the BatchTable component, and contains the 
+name of a trainee, any assessment grades they ahve recieved, and any notes made by their trainer for the week. 
+
+
+****CONTROLLERS****
+
