@@ -1,0 +1,79 @@
+/*.THIS.row{
+       background-color: #474C55;
+    box-sizing: border-box;
+    display: block;
+    font-family: Futura-Std-Book;
+    font-size: 10.5px;
+    line-height: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-size-adjust: 100%;
+}*/
+.THIS .methods-of-contact{
+    box-sizing: border-box;
+    display: block;
+    font-family: Futura-Std-Book;
+    font-size: 10.5px;
+    line-height: 15px;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: fixed;
+    text-size-adjust: 100%;
+}
+.THIS .RevatureLogo{
+    border-bottom-color: #333;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-image-outset: 0px;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: #333;
+    border-left-style: none;
+    border-left-width:  0px;
+    border-right-color: #333;
+    border-right-style: none;
+    border-right-width: 0px;
+    border-top-color: #333;
+    border-top-style: none;
+    border-top-width: 0px;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    font-family: Futura-Std-Book;
+    font-size: 10.5px;
+    height: 65.3281px;
+    line-height: 15px;
+    margin-top: 15.75px;
+    max-width: 100%;
+    padding-bottom: 10.5px;
+    text-size-adjust: 100%;
+    vertical-align: middle;
+    width: 175px;
+}
+.THIS #contact-info{
+    color: #B9B9BA;
+    font-family: Glyphicons Halflings;
+    font-size: 10.5px;
+    display: block;
+    line-height: 15px;
+    min-height: 1px;
+    position: fixed;
+    text-size-adjust: 100%;
+    
+    
+}
+.THIS a{
+    color: #B9B9BA;
+    
+}
+.THIS .icon{
+    color: #B9B9BA;
+    box-sizing: border-box;
+    height: 10.5px;
+    width: 12px;
+}
