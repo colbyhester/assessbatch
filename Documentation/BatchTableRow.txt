@@ -24,6 +24,7 @@ grades and notes for each row from the server. This is accomplished by calling t
 from the BatchTableController.apxc file, and passing the required parameters for them from the component (more
 on this below). 
 
+Method called: getNote, getGrade
 Parameters: getNote - Decimal week number, Id of associate
             getGrade - Id of assessment, Decimal week number
 
@@ -35,6 +36,7 @@ field being changed. The function takes the Id of the note, passes it to the ser
 saveNote method, and then handles the returned results by saving the contents of the note to be the same as the 
 results. 
 
+Method called: saveNote
 Parameters: Id of the note that is being updated 
 
 DYNCOMP 
@@ -46,5 +48,6 @@ dynamically creating those components after determining the required number of e
 the function be called each time the component is sent a "DynComp" event from the BatchTable component, which 
 creates the grade components needed. 
 
+Method called: None
 Parameters: None
 

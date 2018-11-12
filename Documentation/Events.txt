@@ -1,0 +1,26 @@
+*********** EVENTS ***********
+
+This document is meant to describe the overall functionality that each event is meant to accomplish. For more 
+detailed information on how these events are used, visit the documentation for its associated components. 
+
+1. SENDBATCHID
+
+This event has a single attribute: batch. It's only purpose is to send the Id of a batch to the batchTable 
+component to use in creating the correct list of trainees for the specified batch. This is updated when a user
+selects a new batch from the list of filters at the top of the Assess Batch page, which causes the page to reload
+with that new batch Id. 
+
+2. DYCOMP
+
+This event is used to create new components within the batchTableRow component, such as the grades for any 
+assessments that have been created. Once a new assessment has been made, it will fire this event and send all the
+required information about that assessment to the batchTableRow component to use in creating a new note that is
+linked to that assessment. 
+
+3. WEEKCHANGEEVENT
+
+This event is used to carry over the "week" attribute when a user selects a different week than the current one. 
+It is passed the week number in the form of an integer, and then sends that integer to the batchTable component
+to use in rendering the correct information for that specified week in the table. 
+
+

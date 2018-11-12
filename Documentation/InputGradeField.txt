@@ -49,6 +49,7 @@ is made to get the grade needed for the specified assessment and week number for
 grade is then passed to the component to display to the user. When all of this is done, the component should have 
 all the values of any existing grades in the component. 
 
+Method called: getGrade
 Parameters: Id of assessment for grade, Id of associate in question
 
 HANDLEBLUR 
@@ -59,4 +60,5 @@ field. This led to the use of a blur event to call this function, which makes a 
 method in our Apex controller to update the grade and return it back to the client-side controller. From that 
 point, the new value will persist through the page being reloaded, as it was updated within the database itself. 
 
+Method called: saveGrade 
 Parameters: Caliber_Grade__c object being updated 
