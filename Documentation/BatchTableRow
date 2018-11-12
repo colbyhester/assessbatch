@@ -6,3 +6,45 @@ name of a trainee, any assessment grades they ahve recieved, and any notes made 
 
 ****CONTROLLERS****
 
+1. BATCHTABLECONTROLLER.APXC
+
+This controller is the same as the controller used for the BatchTable component. For more information, please
+refer to that component's documentation. 
+
+2. BATCHTABLEROWCONTROLLER.JS
+
+This is the client-side controller for the BatchTableRow component, and handles making calls to the server for
+pulling information and sending information between it. Below we will detail the different functions and how
+to use them. 
+
+DOINIT
+
+This is the default function that is called when the component is loaded, and is responsible for getting all the 
+grades and notes for each row from the server. This is accomplished by calling the getNote and getGrade methods 
+from the BatchTableController.apxc file, and passing the required parameters for them from the component (more
+on this below). 
+
+Parameters: getNote - Decimal week number, Id of associate
+            getGrade - Id of assessment, Decimal week number
+
+HANDLESAVE
+
+This function is responsible for saving a specified note's contents after they ahve been altered by a user. It 
+is automatically called through the use of a blur event that is fired whenever a user clicks off of the note 
+field being changed. The function takes the Id of the note, passes it to the server-side controller in the 
+saveNote method, and then handles the returned results by saving the contents of the note to be the same as the 
+results. 
+
+Parameters: Id of the note that is being updated 
+
+DYNCOMP 
+
+This function is responsible for creating the grade and note components within itself to display the correct 
+fields for trainers to edit and update. These components include both the notes for each trainee as well as the 
+grades that may exist for any assessments that were created for the given week. This is accomplished by 
+dynamically creating those components after determining the required number of each. This is determined by having
+the function be called each time the component is sent a "DynComp" event from the BatchTable component, which 
+creates the grade components needed. 
+
+Parameters: None
+

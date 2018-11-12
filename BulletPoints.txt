@@ -1,0 +1,9 @@
+- Purpose of this page 
+    - Allows trainers to grade individuals from their batch 
+    - Have access to the averages for the batch to see how well/poorly they are doing
+- Dynamically create grade and note records for each associate per week
+- Automatically save user's entered grade and note values to the database when the user blurs off the input field
+- Created calculation methods for the assess batch to calculate the points to percent, section average, 
+ and weekly average 
+- Let users create and modify assessments
+- Having the page create, and saving the assessment dynamically 
