@@ -53,23 +53,30 @@
          //Components needed to insert 
         var newComponents = [];
         newComponents.push(["aura:html", {
-            "tag": "td"
+            "tag": "td", 
+            "HTMLAttributes":{
+                "class": "col-sm-1 col-md-1 col-lg-1"
+            }
         }]);
 
         newComponents.push(["aura:html", {
             "tag": "div",
             "HTMLAttributes": {
-                
-                "class": "slds-truncate col-sm-2 col-md-2 col-lg-2"
+                "class": "slds-truncate "
             }
         }]);
         var assoc = cmp.get('v.associate');
         var assess = event.getParam("Assessment");
+        var grades = event.getParam('grades');
+        //console.log(JSON.stringify(grades));
+        //console.log(JSON.stringify(assoc));
+        //console.log(JSON.stringify(assess));
     	newComponents.push(["c:InputGradeField",
             {
                 "aura:id" : "oTextarea", 
                 "assessment": assess,
-                "associate": assoc
+                "associate": assoc,
+                "grades" : grades
             }]);
         //console.log(newComponents[2]);
         //console.log(assess);
