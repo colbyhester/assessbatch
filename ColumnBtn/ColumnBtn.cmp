@@ -17,7 +17,7 @@
     <aura:handler event='c:sendAssociates' action='{!c.setAssociates}' />
     
     <!--event to say save button was clicked-->
-    <aura:registerEvent name="DynComp" type="c:DynComp"/>
+    <!--<aura:registerEvent name="DynComp" type="c:DynComp"/>-->
     
     <aura:registerEvent name="tableRefresh" type="c:tableRefresh"/>
    

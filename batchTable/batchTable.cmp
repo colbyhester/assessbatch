@@ -9,11 +9,15 @@
     <aura:attribute name='averages' type='Decimal[]' />
     <aura:attribute name='totalAvg' type='Decimal' />
     <aura:attribute name='index' type='Integer' default='0' />
+    <aura:attribute name='handledRefresh' type='Integer' default='0' />
+    
     <aura:handler event="c:DynComp" action="{!c.addHeader}"  />
+    
     <aura:registerEvent name='sendAssociates' type='c:sendAssociates' />
     
+    
     <aura:handler event="c:weekChangeEvent" action="{!c.weekChange}"  />
-    <aura:registerEvent name="DynComp" type="c:DynComp"/>
+    <!--<aura:registerEvent name="DynComp" type="c:DynComp"/>-->
     
     <aura:handler event="c:tableRefresh" action="{!c.refresh}"  />
     <aura:attribute name='Assessments2' type='Caliber_Assessment__c' default = '{"sObjectType":"Caliber_Assessment__c",

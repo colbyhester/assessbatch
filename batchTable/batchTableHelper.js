@@ -31,6 +31,7 @@
                     var theEvent = $A.get("e.c:DynComp");
                     theEvent.setParams({"Assessment" : assessments[i]});
                     theEvent.setParams({"grades" : response.getReturnValue()});
+                    theEvent.setParams({'numAssessments' : assessments.length});
                     //console.log(assessments[i]);
                     theEvent.fire();
                 }

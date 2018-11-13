@@ -1,6 +1,7 @@
 ({
     DeleteIt : function (component, event, helper){
     	var Assignment = component.get("v.DeleteAssess"); 
+        component.set('v.handledRefresh',0);
         //console.log(Assignment);
         var action = component.get("c.deleting");
         action.setParams({
@@ -38,7 +39,7 @@
         }, true);
         if (allValid) {
             
-            
+			cmp.set('v.handledRefresh',0);            
             var cmpTarget = cmp.find('Modalbox');
             var cmpBack = cmp.find('Modalbackdrop');
             $A.util.removeClass(cmpBack,'slds-backdrop--open');
@@ -230,11 +231,11 @@
         
     },
     addHeader : function(cmp, event, helper) {
-        
-        //helper.refreshDataTable(cmp,event,helper);
-        
-        var assessment = event.getParam("Assessment");
         var assessments = cmp.get('v.Assessments');
+        //helper.refreshDataTable(cmp,event,helper);
+        if(cmp.get('v.handledRefresh')<assessments.length){
+        var assessment = event.getParam("Assessment");
+        
         //console.log(JSON.stringify(assessments));
         var action = cmp.get('c.PointstoPercent');
         var index = cmp.get('v.index')+'';
@@ -302,8 +303,11 @@
             }
         });
         $A.enqueueAction(action);
+            cmp.set('v.handledRefresh',cmp.get('v.handledRefresh')*1+1);
+        }
     },
     refresh : function(component, event, helper){
+        component.set('v.handledRefresh',0);
         console.log('refresh (refresh)');
         helper.refreshDataTable(component,event,helper);
     }

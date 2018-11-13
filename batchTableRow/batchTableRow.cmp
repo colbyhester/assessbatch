@@ -4,6 +4,7 @@
     <aura:attribute name='note' type='Caliber_Note__c' />
     <aura:attribute name='week' type='Integer' />
     <aura:attribute name='grades' type='Caliber_Grade__c[]'/>
+    <aura:attribute name='handledRefresh' type='Integer' default='0' />
     <aura:handler event='c:saveNotes' action='{!c.handleSave}'/>
     <aura:handler event="c:DynComp" action="{!c.DynComp}"  />
     

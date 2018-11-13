@@ -48,9 +48,11 @@
 
     },
     DynComp : function(cmp, event, helper) {
-        
-         
+        console.log(cmp.get('v.handledRefresh')+event.getParam('numAssessments'));
+        if(cmp.get('v.handledRefresh')<event.getParam('numAssessments')){
          //Components needed to insert 
+        var hand = cmp.get('v.handledRefresh');
+        cmp.set('v.handledRefresh',hand*1+1);
         var newComponents = [];
         newComponents.push(["aura:html", {
             "tag": "td"
@@ -103,5 +105,6 @@
             }
         }
     );
+    }
     }
 })
