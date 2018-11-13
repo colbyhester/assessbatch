@@ -1,0 +1,40 @@
+({
+   
+    doInit : function(cmp, evnt, hlpr){
+        var action = cmp.get('c.getBatch');
+        action.setParams({'batchID':cmp.get('v.batchID')});
+        action.setCallback(this, function(response){
+            if(response.getState()==='SUCCESS'){
+                cmp.set('v.batch',response.getReturnValue());
+                console.log(cmp.get('v.batch.Caliber_Number_of_Weeks__c'));
+                for(let i=0;i<cmp.get('v.batch.Caliber_Number_of_Weeks__c')-1;i++){
+                    hlpr.addTab(cmp,evnt);
+                }
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    
+    // Use handleActive to set the active content, see details in the helper
+    handleActive: function (cmp, event, helper) {
+        helper.handleActive(cmp, event);
+    },
+    // Creates a new tab
+    handleAddTab: function(component, event,helper) {
+        helper.addTab(component,event);
+        var action = component.get('c.incrementWeek');
+        action.setParams({'batch':component.get('v.batch')});
+        action.setCallback(this, function(response){
+            if(response.getState()==='SUCCESS'){
+                component.set('v.batch',response.getReturnValue());
+                
+            }
+        });
+        $A.enqueueAction(action);
+        
+    },
+    
+    testFocus : function(component,event,helper){
+        console.log('focus');
+    }
+})

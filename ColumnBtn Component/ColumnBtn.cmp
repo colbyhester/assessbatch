@@ -1,8 +1,11 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global" controller='ColumnBtnController'>
+    
+    <!-- Used to store selected options -->
     <aura:attribute name='cat' type='id'/>
     <aura:attribute name='type' type='string'/>
     <aura:attribute name='point' type='string'/>
     
+    <!-- Needed to create Assessment -->
     <aura:attribute name='Assessment' type='Caliber_Assessment__c' default = '{"sObjectType":"Caliber_Assessment__c",
                                                                               "Week_Number__c":0,
                                                                               "Training_Id__c":"",
@@ -11,10 +14,16 @@
                                                                               "Assessment_Category__c":""}' />
     <aura:attribute name="batchID" type="Id" default='a0Df4000006FaijEAC'/>
     <aura:attribute name='week' type='Integer' default='1'/>
+    <aura:attribute name='grades' type='Caliber_Grade__c[]'/>
+    <aura:attribute name='associates' type='Contact[]' />
+    
    
-     
+    <aura:handler event="c:weekChangeEvent" action="{!c.weekChange}"  />
+    <aura:handler event='c:sendAssociates' action='{!c.setAssociates}' />
+    
     <!--event to say save button was clicked-->
     <aura:registerEvent name="DynComp" type="c:DynComp"/>
+    <aura:registerEvent name="tableRefresh" type="c:tableRefresh"/>
    
     <!-- Used to return picklist value of Assess Type-->
     <aura:attribute name="picklistValues" type="Object" />
@@ -24,7 +33,10 @@
     <aura:attribute name='Category' type='Caliber_Category__c[]'/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
-    <lightning:button  variant="scoped" class='slds-button' iconName="utility:add" label="Create Assessment" onclick="{!c.openmodal}"  /> 
+		<lightning:button  variant="scoped" class='slds-button' iconName="utility:add" label="Create Assessment" onclick="{!c.openmodal}"  />    
+    
+    
+    <!-- Modal -->
     
     <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal slds-modal_large   ">
         <div class="slds-modal__container custom" style="width: 20%;">
