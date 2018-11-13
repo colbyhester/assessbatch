@@ -256,8 +256,7 @@
             "tag": "th",
             "HTMLAttributes": {
                 
-                "class" : "slds-text-title_caps",
-                "scope" : "col"
+                "class" : "slds-text-title_caps col-sm-1 col-md-1 col-lg-1"
             }
         }]);
         var bod = assessment.Assessment_Title__c+" - "+response.getReturnValue()+"%";
@@ -269,7 +268,7 @@
             "HTMLAttributes": {
                 "onclick" : cmp.getReference("c.openmodal"),	
                 "id" : assessment.Id,
-                "class": "slds-truncate"
+                "class": "col-sm-1 col-md-1 col-lg-1 assessment-title"
             }
         }]);
         

@@ -1,4 +1,7 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="batchTableController">
+    <ltng:require
+                  styles="{!$Resource.bootstrapCSS}"
+                  scripts="{!join(',', $Resource.JQuery, $Resource.bootstrapJS)}"/>
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:attribute name="associates" type="Contact[]"/>
     <aura:attribute name="batchID" type="Id" />
@@ -39,79 +42,101 @@
     
     <table class="slds-table slds-table_cell-buffer slds-table_bordered">
         <thead>
-            <tr id='NewHeader' class="slds-line-height_reset">
-                <th class="slds-text-title_caps" scope="col">
+            <tr class="row">
+                <th class="slds-text-title_caps  col-sm-2 col-md-2 col-lg-2" scope="col">
                     <div class="slds-truncate" title="Trainee">Trainee</div>
                 </th>
+                <th class="col-sm-1 col-md-1 col-lg-1">
+                    <!-- this is the header for the flags -->
+                </th>
                 {!v.body}
-                <th class="slds-text-title_caps" scope="col">
+                <th class="slds-text-title_caps col-sm-8 col-md-6 col-lg-4" scope="col">
                     <div class="slds-truncate" title="Notes">Notes</div>
                 </th>   	
             </tr>        	
         </thead>
         <tbody>
             <aura:iteration items="{!v.associates}" var="ass">
-                <c:batchTableRow associate='{!ass}' week='{!v.week}' grades='{!v.grades}' />
+                <tr class="row">
+                    <c:batchTableRow associate='{!ass}' week='{!v.week}' grades='{!v.grades}' />
+                </tr>
             </aura:iteration>
-            <tr class="slds-hint-parent">
-                <th data-label="Average" scope="row">
+        </tbody>
+        <tfoot >
+            <tr class="slds-line-height_reset row" style="border-top:2px solid #e9eaec;">
+                <td data-label="Average" class=" col-sm-2 col-md-2 col-lg-2" scope="row">
                     <div class="slds-truncate" title="Average">Average</div>
-                </th>
+                </td>
+                
+                <td class="col-sm-1 col-md-1 col-lg-1">
+                    <!-- this is the header for the flags -->
+                </td>
+                
                 <aura:iteration items="{!v.averages}" var='avg'>
-                    <td data-label="Avg">
+                    <td data-label="Avg" class="col-sm-2 col-md-2 col-lg-2">
                         <div class="slds-truncate" title="Avg">
                             {!avg}%
                         </div>
                     </td>
                 </aura:iteration>
-                <td data-label="Avg">
-                        <div class="slds-truncate" title="Avg">
-                            Weekly Batch Avg: {!v.totalAvg}%
-                        </div>
-                    </td>
-                
+                <td data-label="Avg" class="col-sm-8 col-md-6 col-lg-4">
+                    <div class="slds-truncate" title="Avg">
+                        Weekly Batch Avg: {!v.totalAvg}%
+                    </div>
+                </td> 
             </tr>
-        </tbody>
+            <tr class="row">
+                <td class="col-sm-1 col-md-1 col-lg-1">
+                </td>
+                <td data-label="Notes" class="col-sm-10 col-md-10 col-lg-10 ">
+                    <div class="slds-truncate" title="Notes">
+                        <!-- this is the overall feed back-->
+                        <ui:inputTextArea placeholder="Enter your overall feedback on the batch" aura:id="textarea" value="{!v.note.Note_Content__c}" 
+                                          blur="{!c.handleSave}" class="note-text-area slds-box" />
+                    </div>
+                </td>
+                <td class="col-sm-1 col-md-1 col-lg-1">
+                </td>
+            </tr>
+        </tfoot>
     </table>
-    <ui:inputTextArea aura:id="textarea" value="{!v.note.Note_Content__c}" blur="{!c.handleSave}"/>
-        <!-- Modal -->
-    
+    <!-- Modal -->
     <div role="dialog" tabindex="-1" aria-labelledby="header43" aura:id="Modalbox" class="slds-modal slds-modal_large   ">
         <div class="slds-modal__container custom" style="width: 20%;">
             <div style= "font-size:20px" class="slds-modal__header" >
-             Edit {!v.AssessTitle}
+                Edit {!v.AssessTitle}
             </div>
-             
+            
             <div class="slds-modal__content slds-p-around--medium">  
                 <div class="slds-grid slds-p-top_medium">
                     <div class="slds-size_6-of-12 slds-p-left_xx-large slds-p-horizontal_x-large " >
                         
-                       <!--User entry for Category-->  
-                       <lightning:select required="true" aura:id='input' value='{!v.cat}'  label="Assessment Category" name="AssessmentCat" messageWhenValueMissing="Choose one!"> 
+                        <!--User entry for Category-->  
+                        <lightning:select required="true" aura:id='input' value='{!v.cat}'  label="Assessment Category" name="AssessmentCat" messageWhenValueMissing="Choose one!"> 
                             <option value="" default="true">Please Select One</option>
-                        <aura:iteration items="{!v.Category}" var="category">
-                            <option value="{!category.Id}">{!category.Name}</option>
-                        </aura:iteration>
-                       </lightning:select>
+                            <aura:iteration items="{!v.Category}" var="category">
+                                <option value="{!category.Id}">{!category.Name}</option>
+                            </aura:iteration>
+                        </lightning:select>
                     </div>
                     <div class="slds-size_5-of-12 slds-p-left_xx-small slds-p-horizontal_x-large " >
                         
-                         <!--User entry for Type-->  
-                          <lightning:select required="true" aura:id='input' label="Assessment Category" name="AssessmentCat" value="{!v.type}" messageWhenValueMissing="Choose one!"> 
-                              <option value="" default="true">Please Select One</option>
-            					<aura:iteration items="{!v.picklistValues}" var="item">
-               						 <option value="{!item.value}">
-                   						 {!item}
-               						 </option>
-          			 		   </aura:iteration>
-      					  </lightning:select>
+                        <!--User entry for Type-->  
+                        <lightning:select required="true" aura:id='input' label="Assessment Category" name="AssessmentCat" value="{!v.type}" messageWhenValueMissing="Choose one!"> 
+                            <option value="" default="true">Please Select One</option>
+                            <aura:iteration items="{!v.picklistValues}" var="item">
+                                <option value="{!item.value}">
+                                    {!item}
+                                </option>
+                            </aura:iteration>
+                        </lightning:select>
                     </div>
                 </div>
                 
                 <div class="slds-grid slds-p-top_x-small">
                     <div class="slds-size_6-of-12 slds-p-left_xx-large slds-p-horizontal_x-large " >
                         
-                           <!--User entry for Points-->  
+                        <!--User entry for Points-->  
                         <lightning:input required="true" aura:id='input' value='{!v.point}' label="Max Points" name="myname"  /> 
                     </div>
                 </div>
@@ -124,5 +149,4 @@
         </div>
     </div>
     <div class="slds-backdrop " aura:id="Modalbackdrop"></div> 
-    
 </aura:component>

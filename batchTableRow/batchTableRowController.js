@@ -55,7 +55,11 @@
         cmp.set('v.handledRefresh',hand*1+1);
         var newComponents = [];
         newComponents.push(["aura:html", {
-            "tag": "td"
+            "tag": "td",
+            "HTMLAttributes": {
+                
+                "class": "col-sm-1 col-md-1 col-lg-1"
+            }
         }]);
 
         newComponents.push(["aura:html", {

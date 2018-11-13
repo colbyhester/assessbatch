@@ -30,7 +30,6 @@
             }
             else {
                 console.log("Failed with state: " + state);
-
             }
         });
         // Send action off to be executed

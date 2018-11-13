@@ -17,7 +17,7 @@
     <aura:handler event='c:sendAssociates' action='{!c.setAssociates}' />
     
     <!--event to say save button was clicked-->
-    <!--<aura:registerEvent name="DynComp" type="c:DynComp"/>-->
+    <aura:registerEvent name="DynComp" type="c:DynComp"/>
     
     <aura:registerEvent name="tableRefresh" type="c:tableRefresh"/>
    
@@ -42,7 +42,7 @@
                         
                        <!--User entry for Category-->  
                        <lightning:select required="true" aura:id='input' value='{!v.cat}'  label="Assessment Category" name="AssessmentCat" messageWhenValueMissing="Choose one!"> 
-                            <option value="" default="true">Please Select One</option>
+                            <option value="" default="true" class = "slds-box">Please Select One</option>
                         <aura:iteration items="{!v.Category}" var="category">
                             <option value="{!category.Id}">{!category.Name}</option>
                         </aura:iteration>

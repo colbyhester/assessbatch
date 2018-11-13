@@ -1,17 +1,24 @@
 .THIS.slds-button{
     color: #F26925; /* primary rev orange */
     font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
-    
+    font-weight: bold;
     
     font-size: 14px;
     
 }
 
+.THIS{
+    font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
+	float:right;
+}
+
 .THIS.slds-button:hover{
     font-family: 'Futura-Std-Heavy',"Helvetica Neue",Helvetica,Arial,sans-serif;
     transition: ease-in-out 0.4s;
-    background-color: #2574a9;
-   color: #fff; 
+    background-color: #dddbda
+;
+   color: #72A4C2; 
+    font-weight: bold;
 }
 
 .THIS .save{

@@ -1,0 +1,36 @@
+<aura:component >
+    <footer style="background-color:#474C55; height: 175px;" >
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 methods-of-contact">
+                    <img class= "RevatureLogo" src="{!$Resource.icons+ '/icons/rev-footer.png'}" />
+                    <div id= "contact-info">
+                        <span class="glyphicon glyphicon-home" ></span>
+                        <span>
+                            <img class="icon" src= "{!$Resource.icons+ '/icons/icons8-home-24.png'}"/>  11730  Plaza America Drive
+                            <br/>
+                            Reston, VA 20190
+                        </span>
+                        <br/>
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        <a href="tel:(703) 570-8282"><img class="icon" src= "{!$Resource.icons+ '/icons/icons8-phone-24.png'}">
+                            </img>(703)570-8282</a><br/>
+                        
+                        <span class= "glyphicon glyphicon-envelope"></span>
+                        <a href="mailto:info@revature.com"><img class="icon" src= "{!$Resource.icons+ '/icons/icons8-secured-letter-30.png'}" ></img>info@revature.com</a>
+                        <br/>
+                        
+                        <span class="glyphicon glyphicon-link"></span>
+                        <a target="_blank" href="http://revature.com"><img class="icon" src= "{!$Resource.icons+'/icons/icons8-link-filled-50.png'}"/>revature.com</a>
+                        <br/>
+                        <span class="copyright">
+                            <img class="icon" src= "{!$Resource.icons+ '/icons/icons8-copyright-26.png'}" />
+                            2018 Revature
+                            
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</aura:component>

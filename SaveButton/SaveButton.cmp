@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+<ltng:require styles="/resource/fontAwesome/font-awesome-4.7.0/css/font-awesome.css"/>
+    <aura:attribute name="hidden" type="Boolean" default="display:block"/>
+    <aura:attribute name="icon" Type="String" default="color:#F26925"/>
+    <aura:attribute name="color" Type="String"/>
+    
+    <button onclick="{!c.doBurrito}" style="{!v.hidden}">
+        <span>
+            <i class="fa fa-floppy-o fa-2x">  Save</i>
+		</span>
+    </button>
+    	<i class="{!v.icon}" style="{!v.color}"></i>
+</aura:component>
