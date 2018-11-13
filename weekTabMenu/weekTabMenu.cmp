@@ -12,6 +12,7 @@
     <aura:attribute name="batchID" type="Id" />
     <aura:attribute name='batch' type="Training__c" />
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
 	<aura:registerEvent name="weekEvent" type="c:weekChangeEvent"/>
     
     <lightning:tabset>

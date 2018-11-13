@@ -18,6 +18,8 @@
     
     <!--event to say save button was clicked-->
     <aura:registerEvent name="DynComp" type="c:DynComp"/>
+    
+    <aura:registerEvent name="tableRefresh" type="c:tableRefresh"/>
    
     <!-- Used to return picklist value of Assess Type-->
     <aura:attribute name="picklistValues" type="Object" />

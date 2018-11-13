@@ -8,10 +8,14 @@
             if(response.getState()==='SUCCESS'){
                 var grades = response.getReturnValue();
                 //console.log(JSON.stringify(grades));
-                var theEvent = $A.get("e.c:DynComp");
-        		theEvent.setParams({"Assessment" : assessment});
-        		theEvent.setParams({"grades" : grades});
-        		theEvent.fire(); 
+                //var theEvent = $A.get("e.c:DynComp");
+        		//theEvent.setParams({"Assessment" : assessment});
+        		//theEvent.setParams({"grades" : grades});
+        		//theEvent.fire(); 
+        		var theEvent = $A.get("e.c:tableRefresh");
+                theEvent.fire(); 
+                
+                console.log('Table Refresh Event Fired.');
             }else{
                 console.log('Failed with state: '+response.getState());
             }

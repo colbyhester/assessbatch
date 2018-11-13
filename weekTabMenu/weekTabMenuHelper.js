@@ -1,6 +1,7 @@
 ({
     handleActive: function (cmp, event) {
         var tab = event.getSource();
+        console.log((tab));
         // When the tab becomes active, find the tab by the id and inject the corresponding content.
         // See this example for how this will need to be done. 
         var week = tab.get('v.id').split('k')[1];

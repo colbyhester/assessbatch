@@ -114,19 +114,23 @@ public class batchTableController {
          PointSum += Assessment[i].Max_Points__c;
        /*calculate points to percentage*/   
         }
-       return (TrainerPoints/PointSum)*100; 
+       return ((TrainerPoints/PointSum)*100).setScale(0); 
     }
     
     @AuraEnabled
-    public static Decimal sectionAverage(List<Caliber_Grade__c> grades){
+    public static Decimal sectionAverage(List<Caliber_Grade__c> grades, ID assessment){
         /*iterate through the grades*/
         Decimal ScoreSum=0;
+        Integer count = 0;
         for(Integer i=0; i<grades.size(); i++){
             /*creates a list of decimals; sums it up*/
                // ScoreSum += grades[i];
+            if(grades[i].Caliber_Assessment__c==assessment){
         ScoreSum += grades[i].Score__c;
+                count++;
+            }
         }/*returns the section average*/
-        return(ScoreSum/grades.size());
+        return (ScoreSum/count).setScale(2);
     } 
     
     @AuraEnabled
@@ -136,11 +140,33 @@ public class batchTableController {
         for(Integer i=0; i<weekAvg.size(); i++){
             /*we want to create a list of grades where we select the score from the caliber grades object
              * and where the caliber assessment object is we want it to be our weekAvg[i]*/
-            list<Caliber_Grade__c> grade= [SELECT Score__c FROM Caliber_Grade__c WHERE Caliber_Assessment__c=: weekAvg[i].Id];
+            list<Caliber_Grade__c> grade= [SELECT Score__c, Caliber_Assessment__c FROM Caliber_Grade__c WHERE Caliber_Assessment__c=: weekAvg[i].Id];
             /*we want the total average to sum up to the list of grade*/
-            totalAverage += sectionAverage(grade);
+            totalAverage += sectionAverage(grade, weekAvg[i].ID);
         }
-        return (totalAverage/weekAvg.size());
+        return (totalAverage/weekAvg.size()).setScale(2);
     }
+    
+    @AuraEnabled
+    public static void deleting(ID Assignment){
+        
+        delete [select id from caliber_assessment__c where id=:Assignment];
+        
+        
+    }
+    
+    
+     @AuraEnabled
+    public static Caliber_Assessment__c updating(Caliber_Assessment__c Assignment){
+        System.debug(Assignment);
+        update Assignment;
+        return [SELECT Max_Points__c, Assessment_Title__c FROM Caliber_Assessment__c WHERE ID=:Assignment.ID];
+    }
+
+	 @AuraEnabled 
+    public static List<Caliber_Category__c> getCat() {
+        List<Caliber_Category__c> cat = [SELECT Name, ID FROM Caliber_Category__c ];
+        return cat;
+    }    
     
 }
