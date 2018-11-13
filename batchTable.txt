@@ -1,0 +1,69 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="batchTableController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="associates" type="Contact[]"/>
+    <aura:attribute name="batchID" type="Id" />
+    <aura:attribute name='week' type='Integer'/>
+    <aura:attribute name='Assessments' type='Caliber_Assessment__c[]' />
+    <aura:handler event="c:DynComp" action="{!c.addHeader}"  />
+    <aura:registerEvent name='save' type='c:saveNotes' />
+    
+    
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+        <thead>
+            <tr id='NewHeader' class="slds-line-height_reset row" >
+                <th class="slds-text-title_caps col-sm-2 col-md-2 col-lg-2" scope="col">
+                    <div class="slds-truncate" title="Trainee">Trainee</div>
+                </th>
+                <th class="col-sm-1 col-md-1 col-lg-1">
+                    <!-- this is the header for the flags -->
+                </th>
+                {!v.body}
+                <th class="slds-text-title_caps col-sm-8 col-md-8 col-lg-8" scope="col">
+                    <div class="slds-truncate" title="Notes">Notes</div>
+                </th>   	
+            </tr>        	
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.associates}" var="ass">
+                <tr class="row">
+                    <c:batchTableRow associate='{!ass}' week='{!v.week}' />
+                </tr>
+            </aura:iteration>
+            
+        </tbody>
+        <tfoot >
+            <tr class="slds-line-height_reset row" style="border-top:2px solid #e9eaec;">
+                <td class=" col-sm-2 col-md-2 col-lg-2">
+                    Average
+                </td>
+                <td class="col-sm-1 col-md-1 col-lg-1">
+                    <!-- this is the header for the flags -->
+                </td>
+                <td class="col-sm-2 col-md-2 col-lg-2">
+                    <!-- average scores go here -->
+                </td>
+                <td class="col-sm-8 col-md-8 col-lg-8">
+                    <!--weekly batch average goes here -->
+                </td> 
+            </tr>
+            <tr class="row">
+                <td class="col-sm-1 col-md-1 col-lg-1">
+                
+                </td>
+                <td data-label="Notes" class="col-sm-10 col-md-10 col-lg-10">
+                    <div class="slds-truncate" title="Notes">
+                        <!-- this is the overall feed back-->
+                        <ui:inputTextArea placeholder="Enter your overall feedback on the batch" aura:id="textarea" value="{!v.note.Note_Content__c}" 
+                                          blur="{!c.handleSave}" class="note-text-area" />
+                    </div>
+                </td>
+                <td class="col-sm-1 col-md-1 col-lg-1">
+                
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <lightning:button label='Save' title='save' onclick='' />
+    
+</aura:component>

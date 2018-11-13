@@ -1,0 +1,29 @@
+<aura:component controller="batchTableController">
+    <ltng:require
+                 styles="{!$Resource.bootstrapCSS}"
+                 scripts="{!join(',', $Resource.jQuery, $Resource.bootstrapJS)}"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name='associate' type='Contact' />
+    <aura:attribute name='note' type='Caliber_Note__c' />
+    <aura:attribute name='week' type='Integer' />
+    <aura:attribute name='Assessment' type='Caliber_Assessment__c' />
+    <aura:handler event='c:saveNotes' action='{!c.handleSave}'/>
+    <aura:handler event="c:DynComp" action="{!c.DynComp}"  />
+    
+        <td data-label="Trainee" class ="col-sm-2 col-md-2 col-lg-2" >
+            <div title="Name">{!v.associate.Name}</div>
+        </td>
+        <td class="col-sm-1 col-md-1 col-lg-1">
+            <!-- this is where behavioral flags will go -->
+        	
+        </td>
+        {!v.body}
+        <td data-label="Notes" class = "col-sm-8 col-md-8 col-lg-8">
+            <div class="slds-truncate " title="Notes">
+                <!--<lightning:input type='text' value="{!v.note.Note_Content__c}" />-->
+                <ui:inputTextArea aura:id="textarea" value="{!v.note.Note_Content__c}" 
+                                  blur="{!c.handleSave}" class="note-text-area" />
+            </div>
+        </td>
+    
+</aura:component>
