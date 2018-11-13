@@ -17,6 +17,22 @@ trainees for the given batch, as well as their grades and notes. Below we will g
 method(which is also provided in the code for each class as well) to help give a better understanding on how and 
 when to call each of them. 
 
+GETBATCH
+
+This method is used to return the name and number of weeks for a specified batch, as those are not fields that the 
+client-side controller has available by default. It requires a batch Id to be passed into it from the component 
+in order to query for the correct records that need to be returned. 
+
+Parameters: Id of batch you want to get information on
+
+INCREMENTWEEK
+
+This method raises the value of the number of weeks for a batch by one. This is used to give room for a new week 
+to be added to the Week Tab at the top of the page. In order to specify which batch is going to have this change
+made on it, this method requires the component to pass the Training__c object to modify directly. 
+
+Parameters: Training__c record to be updated
+
 GETASSOCIATES
 
 This method is used to get a list of all the Contacts(trainees) associated with a given Training__c(batch). As
@@ -44,6 +60,35 @@ component, and simply updates it. After the update has been committed to the dat
 user. 
 
 Parameters: Id of note you are updating
+
+GETASSESSMENTS
+
+This method is used to get all the assessments for a given batch and week number. It results in a list that is 
+returned to the component that is used to generate all the assessment records shown to users on the page. It is 
+the main method for allowing users to enter grades for these assessments, as it is this list that determines 
+which ones to have editable. 
+
+Parameters: batch Id, Decimal week number
+
+GETGRADES
+
+This method is used to get a list of all the grades for all the assessments in the batch. This is one of the 
+methods that is first called to get all the information onto the page so as to reduce the amount of server calls 
+needed after the page is loaded. In order to obtain these records, the method must be passed a list of assessments 
+for it to iterate through and find grades for. 
+
+Parameters: List of Caliber_Assessment__c records to find grades for 
+
+GETBATCHNOTE
+
+This method is used to retrieve the overall feedback note left for an entire batch by their trainer. The result 
+is sent back to the server to display on the page. If a note does not currently exist for a given batch and week, 
+it is then created and associated with those parameters, saved, and then returned to the component. The component
+then reads the contents of the note and displays them in the field.
+
+Parameters: Decimal week number, Id of batch that the note is associated with 
+
+
 
 2. BATCHTABLECONTROLLER.JS
 
@@ -83,6 +128,3 @@ Parameters: None
 
 OTHER CONSIDERATIONS
 
-This component requires a handler to listen for the custom sendBatchId event, which is fired when the user 
-selects a new batch from the filters on the top of the page. This is necessary to ensure the table is populated 
-with the correct list of trainees that apply to the newly-selected batch. 
