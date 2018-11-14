@@ -1,0 +1,18 @@
+This class is used to translate the javascript functions into Apex code. The purpose of this code is to for the trainer to input a max point and have the assignments based on them as well as the section and weekly average.
+
+FrontEndFunctions.apxc
+    1. pointstoPercent
+We take in two parameters, the list of assessments and an integer index, then grab the number of points from the index where we are accessing the trainer points. 
+Afterwards we want to calculate the total points so we set an initial decimal variable pointsum and along with a for loop we are basing the max to be the assessments size.
+ If i is less then the total number of assessments we want the pointsum to equal that assessments index points that the trainer put in. 
+ Afterwards we want to return the average so we would have the trainer points over the pointsum multiplied by 100.
+      2. sectionAverage
+For this method we take in a list of grades from the caliber object and we want to iterate through the grades. 
+We set the initial score sum and through use of a for loop we want to create a list of decimals up to the size of the grades and we add them.
+ We want to return the scoresum over the grade size.
+      3. weeklyBatchAverage
+For this method we take in a list of assessments as our parameters. This method uses the sectionAverage method and divides by the size. 
+We want to create a list of grades where we select the score from the caliber grade object. We want to create a list of grades where we query through scores from the
+caliber grade object and where the param variable is the assessment id.
+We then want the total average to sum up to the list of grades in the sectionAverage callback.
+We then want to return the total average over the weekavg size.
