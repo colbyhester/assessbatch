@@ -1,0 +1,38 @@
+
+
+weekTabMenu.cmp
+	The weekTabMenu component houses the week tabs. Users can select a week tab to view the corresponding batchTable. Users can also add new week tabs by clicking on the + tab. Week tabs cannot be deleted. As soon as the component loads, the appropriate number of tabs are created based on how many weeks the selected batch has.
+	
+weekTabMenuController.js
+	doInit
+		This function runs when the component is rendered. It sends a request to the server, calling getBatch(batchID). If a response is recieved, the returned Training__c record is saved to the component, and a new week tab is generated for each week in the batch beyond the first, by calling hlpr.addTab().
+	handleActive
+		This function is called when a user clicks on a week tab. The logic is contained in helper.handleActive().
+	handleAddTab
+		This function is called when a user clicks on the + tab. It calls helper.addTab() to create the tab, then sends the current batch to the server to be updated with the new number of weeks. The returned updated Training__c record is the saved to the component.
+	addContent
+		This function is no longer in use and should be removed.
+	testFocus
+		This function is no longer in use and should be removed.
+		
+weekTabMenuHelper.js
+	handleActive
+		This function is called by the controller when a user clicks on a week tab. It obtains the week number from the tab's id attribute and passes it to injectComponent() along with the tab itself, the batchID and the component to be injected (c:batchTable). Then, a weekChangeEvent is fired to notify other components that the user has selected a new week tab.
+	injectComponent
+		This function dynamically inserts a batchTable component with the relevant week and batchID attributes into the specified tab.
+	addTab
+		This function is called to dynamically create week tabs. It determines what week the tab should be for based on how many week tabs already exist, then creates the appropriate tab with the relevant attributes: label, id, class and onactive.
+		
+Static Resources
+	fontAwesome
+		Zip file containing smiley face images for QC reporting, as well as save button icons. Referenced by SaveButton component.
+	icons
+		Zip file that contains images needed for the footer. Referenced by the RevatureFooter component.
+	revaturelogo
+		Image used in the header. Referenced in the CaliberHeader component.
+	bootstrapCSS
+		CSS file containing bootstrap styling used by the pages. Referenced by the batchTableRow, batchTable and InputGradeField components.
+	JQuery
+		Javascript file needed to use JQuery in the code. Referenced by the batchTableRow, batchTable and InputGradeField components.
+	bootstrapJS
+		Javascript file used for bootstrap styling. Referenced by the batchTableRow, batchTable and InputGradeField components.
