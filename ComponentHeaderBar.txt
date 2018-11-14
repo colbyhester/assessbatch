@@ -1,0 +1,27 @@
+**caliber header bar 
+CaliberHeaderBar.cmp
+This component contains the header bar. In the header bar we should have 
+the following:
+-revature logo/home page link
+-home button
+-manage batch button
+-assess batch button
+-quality audit button 
+-panel
+-reports 
+-settings
+For the home logo, it is actually added as a background image in css. The rest of the buttons 
+are using float: right, the first one to be read is the one that goes to the 
+right-hand of the container, and the ones read after it get placed to the left of the previous button
+so they have to be added in reverse order to match the original sequence.
+
+CaliberHeaderBarController.js 
+We created 3 functions, 1 to handle when a user clicks the home logo it will redirect 
+the user to the homepage, 2. settingsHandleChange when the user clicks on settings it will take them
+to their corresponding settings page, and 3. handleclick, so when the user clicks on the any of the pages they will be redirected to that page.
+
+headerController.cls
+We want to return all the batches that started or ended in a specific year. Then we want to return the list
+of years that have batches starting in them. After we build a list of strings for all batches in a year and we want to
+return the number of weeks in a batch along with the strings for each week in a batch and we want to
+date.
