@@ -1,0 +1,20 @@
+ColumnBtn.cmp
+This component corresponds to when a user creates a new assignment and assign it a max value 
+as well as when the user clicks on the column of the assignment they have created, they have an option to
+delete or edit that category essentially. Also the  save button is a button that, based on the do-burrito method
+it will spin to load but it will go back to the original save icon.
+
+ColumnBtnController.cls 
+We dictate the with sharing because we want to be able to share the records via apex.
+Within the code our goal is to pull the categories and the values for the picklist for the modal as well as
+saving those assignments and inserting the grades.
+
+ColumnBtnController.js 
+This controller dictates what is happening when a user closes or open the modal. It also 
+pulls from the controller to get a list of categories to insert in the modal options: i.e: what happens when
+a button is saved, when the weeks are changed, and we set the associates up with the corresponding assignments.
+
+ColumnBtnHelper.js
+This controller creates the grades for the modals while setting the necessary parameters and checking to see if the
+state is successful. Also this helper class checks to see if the event fires and that the table will refresh with the 
+new grades.

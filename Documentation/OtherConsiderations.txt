@@ -1,0 +1,16 @@
+Other Considerations:
+	-Clean up code 
+		- naming conventions for variables/attributes and functions
+		- delete commented out code, as well as functions and attributes that are not used
+	-Future Functionality/Performance Improvement
+		-Automatically update weekly batch averages (convince Patrick to move calculations to front end?)
+		-Re-work code to use less dynamically created components
+		-Re-work events to be Component Events (currently all events are Application Events)
+		-Re-work code so that more data is retrieved per server call, so that less server calls are made (query 
+        for all notes at once instead of one by one)
+	-Bugs
+		-Currently unable to set the default Assessment Category Name to the proir value when editing an 
+        Assessment.
+			-In order for the Assessment Category to be updated, the user needs to select another option from 
+            the list (If above bug is addressed this bug is not relevant)
+		-The user is not automatically redirected to the newly created tab after the + tab is clicked

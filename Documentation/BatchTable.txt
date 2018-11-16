@@ -88,7 +88,55 @@ then reads the contents of the note and displays them in the field.
 
 Parameters: Decimal week number, Id of batch that the note is associated with 
 
+POINTSTOPERCENT
 
+This method is used to convert the Max_Points__c field on an assessment into its percentage of the total number 
+of points between all the assessments for a particular week. This value is then sent back to the component to be 
+displayed underneath the name of the assessment on the table. This allows trainers to see the weight of an 
+assessment compared to the others for the week to guage how important it is overall. 
+
+Parameters: List of all Caliber_Assessment__c records, Integer index of assessment we are interested in 
+
+SECTIONAVERAGE
+
+This method is used to calculate the average grade value for a given assessment, which is then displayed on the 
+bottom of the page for that assessment's column. This is done by taking all of Caliber_Grade__c records that are 
+linked to a given assessment, and taking the avergae of their Score__c fields, which is then returned to the 
+component. 
+
+Parameters: List of all Caliber_Grade__c records, Id of the assessment we want the average of 
+
+WEEKLYBATCHAVERAGE
+
+This method is used to find the average scores for all trainees between all the different assessments that were 
+created for a given week. This allows trainers to see all how the batch is performing overall, as opposed to for 
+one specific assessment. The average is found by taking all the assessments for the week, finding average for 
+each assessment, and then taking the total average of all those values. 
+
+Parameters: List of all Caliber_Assessment__c records for a given week 
+
+DELETING
+
+This method is used to delete a specified assessment from the database, removing it from the table as well. It 
+requires the Id of the assessment that is needing to be deleted. 
+
+Parameters: Id of assessment 
+
+UPDATING
+
+This method is used to update the information of an assessment in case a trainer wants to adjust it's weight, 
+category, or type after it has already been created. It requires the assessment that needs to be 
+updated in order to query for the correct record. 
+
+Parameters: Caliber_Assessment__c record that is being updated 
+
+GETCAT 
+
+This method is used to return a list of all the Caliber_Category__c records in the database, which is then used 
+in the process of creating new assessments. There is no required parameters, as the method is simply pulling all 
+different records without any criteria. 
+
+Parameters: None 
 
 2. BATCHTABLECONTROLLER.JS
 
@@ -96,6 +144,54 @@ This is the client-side controller for the component. It is responsible for send
 component and handling the results of those calls. Its main purpose is to fetch a list of the trainees, notes, 
 assessments, and grades for the table to be displayed. Below are a list of all the functions that are within this 
 controller and what they do. 
+
+UPDATEIT
+
+This funstion is responsible for updating the fields of an assessment after a user makes changes to it. This is 
+done by passing the new fields into the "updating" method in the server-side controller, which then makes the 
+dml statement to update those fields within the database. Once the update is done, the result is then sent back 
+to the client-side controller, where it is set to replace the old version of the assessment. This allows the new 
+values to be displayed once the component is refreshed. 
+
+Methods called: updating 
+Parameters: Caliber_Assessment__c record that needs to be updated 
+
+CLOSEMODAL
+
+As the name implies, this function is in charge of closing the assessment modal once any actions that needed to 
+be completed have been done. This then refreshes the component with any changes in place. 
+
+Methods called: None
+Parameters: None 
+
+OPENMODAL
+
+This function is responsible for opening the assessment modal that is needed to either create, edit, or delete 
+an assessment for the page. It is called when the user either clicks the "Create Assessment" button, or clicks on
+an assessment itself in order to edit/delete one. 
+
+Methods called: None 
+Parameters: None 
+
+WEEKCHANGE
+
+This is the function that handles changing the week that needs to be displayed on the table. It is called when 
+the WeekChangeEvent event is fired and picked up by the batchTable component. It takes the value from the "week" 
+attribute in the event and saves its contents into the "week" attribute in the batchTable component. This then 
+triggers a component refresh, with the new week being shown instead. 
+
+Methods called: None 
+Parameters: None 
+
+DELETIT
+
+This function is used to delete an assessment from the database, and is called when a user clicks the "Delete" 
+button after selecting an assessment from the page. It then calls the "deleting" method from the server-side 
+controller, which handles the actual deletion of the record. Afterwards the component is reloaded to display the 
+updated list of assessments. 
+
+Methods called: deleting 
+Parameters: Id of assessment being deleted
 
 DOINIT
 
@@ -107,24 +203,55 @@ components for each trainee that is returned.
 Method called: getAssociates
 Parameters(for server-side controller): Id of batch being sent to Apex controller
 
-SAVENOTES
+HANDLESAVE
 
-This function is responsible for taking the updated note field that a user has entered and sending its value to 
-the server-side controller to be saved. This is accomplished by calling the saveNote method from the server-side 
-controller and having it update the ntoe in question within the database. This allows users to make dynamic 
-changes to note fields and have them retain those changes anytime the page is refreshed. 
+This function is responsible for saving the contents of a Caliber_Note__c after it has been updated by a trainer. 
+It calls the "saveNote" method in the Apex controller, passes it the note that has been changed, and then lets 
+that method update the contents and return the results. It then sets the value of the updated note into the old 
+version to have it changed on the page for good. 
 
-Method called: saveNote
-Parameters: Id of note you want to update 
+Methods called: saveNote 
+Parameters: Caliber_Note__c record that needs to be updated/saved 
 
-HANDLESENTID
+ADDHEADER
 
-This function is a handler for when the component is sent a new batch Id (such as when a new batch is selected).
-This effectively sets the value of the batchId attribute within the component to the value that was sent to the 
-component, which refreshes the table to show the list fo trainees from the specified batch instead. 
+This function handles adding the weight percentage of each assessment to display below its name. It finds this 
+value by calling the PointstoPercent method from the server-side controller after passing it the list of 
+assessments, as well as the index number of the assessment in that list. The server then calculates the weighted 
+percentage for the assessment and returns it back to the component to display. 
 
-Method called: None
-Parameters: None
+Methods called: PointstoPercent
+Parameters: List of assessments, index number of assessment needing the percentage 
 
-OTHER CONSIDERATIONS
+REFRESH 
+
+This is a generic function that is meant to refresh the component after any changes have been made that need to 
+be displayed. It calls a function in the helper that essentially rerenders the entire table after checking the 
+new values that have been altered, thus showing a trainer all the new values they want. This is done by running 
+several of the getter methods within the Apex controller to fetch all the relevant information needed to rebuild 
+the table. 
+
+Methods called: refreshDataTable --> getAssociates, getAssessments, getCat, getBatchNote
+Parameters: Technically none, as these methods are called automatically without feeding "refresh" any up front
+
+****HELPER****
+
+SETGRADES
+
+This helper function is responsible for setting the values of the grades for each assessment, for each trainee. 
+It calls the getGrades method in the server-side controller to obtain a list of all the grades in the database. 
+It then uses the list of grades to populate the fields within the table with all the current grade values. 
+
+Methods called: getGrades, sectionAverage, weeklyBatchAverage
+Parameters: getGrades: list of assessments to find grades for
+            sectionAverage: list of grades, first assessment in the list of all assessments 
+            weeklyBatchAverage: list of assessments for the week 
+
+REFRESHDATATABLE 
+
+This function is used to refresh the entire table to reflect any changes made by a user. This could be anything 
+from adding an assessment, updating an assessment, or deleting an assessment. It queries for all the necessary
+information again through the Apex controller, and then fills in the table with anything that is still needed. 
+The methods called are already detailed in the "refresh" function above, so please reference that for a list of 
+those. 
 

@@ -13,14 +13,46 @@ with that new batch Id.
 2. DYCOMP
 
 This event is used to create new components within the batchTableRow component, such as the grades for any 
-assessments that have been created. Once a new assessment has been made, it will fire this event and send all the
-required information about that assessment to the batchTableRow component to use in creating a new note that is
-linked to that assessment. 
+assessments that have been created. Once a new assessment has been made in the ColumnBtn component, it will fire 
+this event and send all the required information about that assessment to the batchTable and batchTableRow 
+component to use in creating a new note that is linked to that assessment. 
+
+Components involved:
+ColumnBtn 
+batchTable 
+batchTableRow 
 
 3. WEEKCHANGEEVENT
 
 This event is used to carry over the "week" attribute when a user selects a different week than the current one. 
-It is passed the week number in the form of an integer, and then sends that integer to the batchTable component
-to use in rendering the correct information for that specified week in the table. 
+It is passed the week number in the form of an integer, and then sends that integer to the batchTable and 
+ColumnBtn component to use in rendering the correct information for that specified week in the table. 
 
+Components involved: 
+weekTabMenu
+ColumnBtn
+batchTable 
 
+4. SENDASSOCIATES
+
+This event is in charge of passing a list of Contacts (trainees) between the batchTable and ColumnBtn components 
+so that when a trainer creates a new assessment, it knows which trainees to associate it with. It is fired when 
+a user first loads the batchTable component, that way no matter when they create a new assessment, the list will 
+already have been send to the ColumBtn component to use that information. 
+
+Components involved: 
+ColumnBtn
+batchTable
+
+5. TABLEREFRESH
+
+This event is used to trigger an event within the batchTable component, which then reloads the table to adjust 
+for any changes made to it. It is called from the ColumnBtn component after a new assessment has been created, 
+which would mean that the table would need to be reloaded to include the new assessment column to display it. No 
+data is actually sent between the two components, as this event is only used to refresh the table rather than 
+use any new information (the batchTable component automatically displays any assessments for the week when it is
+loaded, so there is no need to send the new assessment to it in this case).  
+
+Components involved:
+ColumnBtn 
+batchTable

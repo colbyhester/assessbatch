@@ -1,0 +1,17 @@
+Static Resources
+	fontAwesome
+		Zip file containing smiley face images for QC reporting, as well as save button icons. Referenced by 
+        SaveButton component.
+	icons
+		Zip file that contains images needed for the footer. Referenced by the RevatureFooter component.
+	revaturelogo
+		Image used in the header. Referenced in the CaliberHeader component.
+	bootstrapCSS
+		CSS file containing bootstrap styling used by the pages. Referenced by the batchTableRow, batchTable and 
+        InputGradeField components.
+	JQuery
+		Javascript file needed to use JQuery in the code. Referenced by the batchTableRow, batchTable and 
+        InputGradeField components.
+	bootstrapJS
+		Javascript file used for bootstrap styling. Referenced by the batchTableRow, batchTable and 
+        InputGradeField components.

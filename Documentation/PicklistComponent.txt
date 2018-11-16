@@ -1,0 +1,16 @@
+PicklistComponent
+
+This component is responsible for showing a picklist for assessment type, in the ColumnBtn component. 
+
+Controller
+
+1.PicklistComponentController.js
+
+This is a client side controller for the component. That's only function is the doInit, which would be used to 
+pull picklist values from the salesforce org.
+
+DOINIT
+
+This is the initial function that is immediately ran upon loading the component, and is responsible for fetching 
+the values of the picklist from getPickListValuesIntoList and have them set as the options to choose from in 
+assessment type.

@@ -1,0 +1,14 @@
+~~~~SaveButton Component~~~~
+This Component is used to help ensure the onBlur is successful, by allowing users to move off a input field. The 
+button itself has no interaction with the database and has no actual affect on saving or data. 
+
+~~~~SaveButtonController.js~~~~
+
+doBurrito
+
+This function is called when the button is pressed. It hides the button and displays a loading icon 
+(fa fa-spinner fa-spin fa-3x).
+
+ We have two nested functions inside, both being a setTimeout. The first setTimeout will display a green check 
+ mark after 2 seconds from when the function is called. The second setTimeout will un-hide the button after 2 
+ seconds from the first setTimeout. 
